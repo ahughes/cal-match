@@ -10,7 +10,7 @@
     <title><?php echo $app_title ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="css/soon.css" rel="stylesheet">
@@ -45,7 +45,7 @@
               <div id="seconds" class="timer_box"></div>
           </div>
           <!-- END TIMER -->
-          <div class="col-lg-4 col-lg-offset-4 mt centered">
+          <!-- <div class="col-lg-4 col-lg-offset-4 mt centered">
           	<h4>LET ME KNOW WHEN YOU LAUNCH</h4>
 			      <form class="form-inline" role="form">
 			        <div class="form-group">
@@ -54,9 +54,9 @@
 			        </div>
 			        <button type="submit" class="btn btn-info">Submit</button>
 		        </form>            
-          </div>
+          </div> -->
         </div>
-        <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
+        <!-- LAYER OVER THE BACKGROUND TO MAKE THE WHITE TEXT READABLE -->
         <div id="layer"></div>
         <!-- END LAYER -->
     </section>
@@ -66,8 +66,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script> -->
 	  <script type="text/javascript" src="js/vendor/modernizr.custom.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
     <script src="js/soon.js"></script>
   </body>

@@ -114,6 +114,6 @@ JQUERY BACKSTRETCH
         , "/img/3.jpg"
         , "/img/4.jpg"
         , "/img/5.jpg"
-        ], {duration: 3000, fade: 750});
+        ], {duration: 5000, fade: 1000});
 })(jQuery);
  
