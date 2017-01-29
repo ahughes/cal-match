@@ -90,8 +90,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	  <script type="text/javascript" src="js/vendor/modernizr.custom.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/plugins.js"></script>
-    <script src="js/vendor/jquery.themepunch.revolution.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
     <script src="js/soon.js"></script>
   </body>
   <!-- END BODY -->
