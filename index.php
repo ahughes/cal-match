@@ -63,17 +63,20 @@
         <!-- START SLIDER -->
         <div id="slider" class="rev_slider">
             <ul>
-              <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/1.jpg">
-                <img src="img/slider/1.jpg">
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="img/1.jpg">
+                <img src="img/1.jpg">
               </li>
-              <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/2.jpg">
-                <img src="img/slider/2.jpg">
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="img/2.jpg">
+                <img src="img/2.jpg">
               </li>
-              <li data-transition="slideleft" data-slotamount="1" data-thumb="assets/img/slider/3.jpg">
-                <img src="img/slider/3.jpg">
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="assets/img/3.jpg">
+                <img src="img/3.jpg">
               </li>
-              <li data-transition="slideleft" data-slotamount="1" data-thumb="assets/img/slider/4.jpg">
-                <img src="img/slider/4.jpg">
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="assets/img/4.jpg">
+                <img src="img/4.jpg">
+              </li>
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="assets/img/5.jpg">
+                <img src="img/5.jpg">
               </li>
             </ul>
         </div>
