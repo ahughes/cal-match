@@ -34,10 +34,10 @@
         <div class="container">
           <header>
               <!-- HEADLINE -->
-              <h1 data-animated="GoIn"><b><?php echo $app_title ?></b> is coming soon...</h1>
+              <h1 class="animated.GoIn"><b><?php echo $app_title ?></b> is coming soon...</h1>
           </header>
           <!-- START TIMER -->
-          <div id="timer" data-animated="FadeIn">
+          <div id="timer" class="animated.FadeIn">
               <p id="message"></p>
               <div id="days" class="timer_box"></div>
               <div id="hours" class="timer_box"></div>
