@@ -6,7 +6,7 @@ COMMING SOON PAGE
     * Set your date here  (YEAR, MONTH (0 for January/11 for December), DAY, HOUR, MINUTE, SECOND)
     * according to the GMT+0 Timezone
     **/
-    var launch = new Date(2017, 2, 24, 1, 00);
+    var launch = new Date(2017, 02, 24, 01, 00);
     /**
     * The script
     **/
@@ -24,7 +24,7 @@ COMMING SOON PAGE
             hours.html('<h1>0</h1><p>Hour</p>');
             minutes.html('<h1>0</h1><p>Minute</p>');
             seconds.html('<h1>0</h1><p>Second</p>');
-            message.html('OUR SITE IS NOT READY YET...');
+            message.html(':)');
         }
         else{
             var s = -now.getTimezoneOffset()*60 + (launch.getTime() - now.getTime())/1000;
@@ -43,7 +43,7 @@ COMMING SOON PAGE
             seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
             setTimeout(setDate, 1000);
 
-            message.html('OUR SITE IS NOT READY YET, BUT WE ARE COMING SOON');
+            message.html('OUR PROJECT IS DUE ON MAY 23, SO WE BETTER BE LIVE BY THEN!');
         }
     }
 })(jQuery);
@@ -86,36 +86,6 @@ ANIMATIONS
     });
 })(jQuery);
 /******************************************************************************************************************************
-SLIDER
-*******************************************************************************************************************************/
-(function($) {
-    "use strict";
-    $("body.nomobile #slider").revolution(
-    {
-            delay:9000,
-            startheight:450,
-            startwidth:890,
-
-            thumbWidth:100,
-            thumbHeight:50,
-            thumbAmount:5,
-
-            onHoverStop:"on",
-            hideThumbs:200,
-            navigationType:"bullet",
-            navigationStyle:"round",
-            navigationArrows:"none",
-
-            touchenabled:"on",
-
-            navOffsetHorizontal:0,
-            navOffsetVertical:80,
-            shadow:undefined,
-            fullWidth:"on",
-            fullScreen:"on"
-    });
-})(jQuery);
-/******************************************************************************************************************************
 BOOTSTRAP
 *******************************************************************************************************************************/
 (function($) {
@@ -132,3 +102,18 @@ PROGRESS BAR
         $('#bar-container').slideToggle(); 
     });
 })(jQuery);
+/******************************************************************************************************************************
+JQUERY BACKSTRETCH
+*******************************************************************************************************************************/
+ (function($) {
+    // Duration is the amount of time in between slides,
+    // and fade is value that determines how quickly the next image will fade in
+    $.backstretch([
+        "/img/1.jpg"
+        , "/img/2.jpg"
+        , "/img/3.jpg"
+        , "/img/4.jpg"
+        , "/img/5.jpg"
+        ], {duration: 3000, fade: 750});
+})(jQuery);
+ 
