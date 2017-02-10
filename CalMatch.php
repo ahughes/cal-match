@@ -35,9 +35,9 @@ class TableRows extends RecursiveIteratorIterator {
 } 
 
 $servername = "localhost";
-$username = "alasii";
-$password = "eagle123";
-$dbname = "mcdonalds";
+$username = "Ala";
+$password = "AlBr4460!";
+$dbname = "calories";
 $holdvalue = 9999;
 
 
