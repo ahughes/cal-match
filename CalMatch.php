@@ -34,12 +34,11 @@ class TableRows extends RecursiveIteratorIterator {
      } 
 } 
 
-$servername = "localhost";
-$username = "Ala";
-$password = "AlBr4460!";
-$dbname = "calories";
-$holdvalue = 9999;
-
+$config = parse_ini_file('../config.ini'); //parse config.ini containing credentials
+$servername = $config['dbhost']
+$username = $config['dbuser']
+$password = $config['dbpass']
+$dbname = $config['dbname']
 
 try {
      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

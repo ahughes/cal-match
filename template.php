@@ -1,6 +1,7 @@
+<?php require_once 'config.php'; ?>
+
 <!doctype html>
-<?php require_once('config.php'); ?>
-<html class="no-js">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -110,8 +111,7 @@
             if(!$rows) { $error = db_error(); echo "<h1>Error:</h1><p>$error</p>"; } //display any db errors
             //Echo the results of SQL query:
             echo "<h1>Results:</h1>";
-            foreach($rows as $row) {
-            echo "<p>$row</p>";
+            foreach($rows as $row) { echo "<p>$row</p>"; }
           ?>
         </div>
       </div>

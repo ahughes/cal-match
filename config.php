@@ -51,5 +51,11 @@ function db_error() {
     return mysqli_error($connection);
 }
 
+$rows = db_select("SELECT * FROM myitems ORDER BY calories DESC"); //test query
+if(!$rows) { $error = db_error(); echo "<h1>Error:</h1><p>$error</p>"; } //display any db errors
+echo "<h1>Results:</h1>";
+foreach($rows as $row) {
+	echo "<p>$row</p>";
+}
 ?>
 
