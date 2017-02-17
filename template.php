@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+  <?php include_once('variables.php'); ?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -26,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?php echo $app_title .' <small>Group 19</small>'; ?></a>
+          <a class="navbar-brand" href="#"><?php echo $app_title . ' <small>Group 19</small>'; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="form">
