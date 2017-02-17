@@ -1,19 +1,30 @@
 <?php
 
 function db_connect() {
-    $conn = mysqli($dbhost,$dbuser,$dbpass,$dbname);
+    $dbhost = 'localhost';
+    $dbuser = 'Ala';
+    $dbpass = 'AlBr4460!';
+    $dbname = 'calories';
+    $conn = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
 
     // If connection is unsuccessful, handle error here
     if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+
+    return $conn;
 }
 
 function db_query($query) {
     // Connect to the database
     $conn = db_connect();
 
+    // If connection is unsuccessful, handle error here
+    if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+    
     // Query the database
     $result = $conn->query($query);
 
+    if(!$result) die($conn->error);
+    $conn->close();
     return $result;
 }
 

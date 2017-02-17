@@ -73,10 +73,14 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
-            require_once('config.php');
+            include_once('config.php');
             $query1 = "SELECT * FROM myItems";
-            db_query($query1);
-
+            $result = db_query($query1);
+            echo "List DB Items:<br>"
+            while($row = $result->fetch_assoc()) {
+              echo $row['name'] . '<br>';
+            }
+            $result->free();
           ?>
         </div>
       </div>
