@@ -75,9 +75,10 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
+            include_once 'config.php';
             $query = "SELECT * FROM myItems";
-            db_select($query);
-            print_r($rows);
+            db_query($query);
+            print_r($result);
           ?>
         </div>
       </div>

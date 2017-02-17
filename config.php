@@ -7,8 +7,7 @@ function db_connect() {
 
     // Connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
-        $config = parse_ini_file('../config.ini'); //parse config.ini containing credentials
-        $conn = mysqli($config['dbhost'],$config['dbuser'],$config['dbpass'],$config['dbname']);
+        $conn = mysqli($dbhost,$dbuser,$dbpass,$dbname);
     }
 
     // If connection is unsuccessful, handle error here
@@ -30,7 +29,7 @@ function db_query($query) {
     return $result;
 }
 
-function db_select($query) {
+/*function db_select($query) {
     $rows = array();
     $result = db_query($query);
 
@@ -45,17 +44,17 @@ function db_select($query) {
     }
     return $rows;
 }
-
-function db_error() {
+*/
+/*function db_error() {
     $connection = db_connect();
     return mysqli_error($connection);
 }
-
-$rows = db_select("SELECT 'calories' FROM 'myitems' ORDER BY calories DESC"); //test query
+*/
+/*$rows = db_select("SELECT 'calories' FROM 'myitems' ORDER BY calories DESC"); //test query
 if(!$rows) { $error = db_error(); echo "<h1>Error:</h1><p>$error</p>"; } //display any db errors
 echo "<h1>Results:</h1>";
 foreach($rows as $row) {
 	echo "<p>$row</p>";
-}
+}*/
 ?>
 
