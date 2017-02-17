@@ -75,43 +75,9 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
-            /* Testing another format to display query results */
-            /*
-            echo "<table style='border: solid 1px black;'>";
-            echo "<tr><th>Name</th><th>Restaurant</th><th>Type</th><th>Calories</th></tr>";
-
-            class TableRows extends RecursiveIteratorIterator { 
-              function __construct($it) { 
-                parent::__construct($it, self::LEAVES_ONLY); 
-              }
-              function current() {
-                return "<td style='width: 150px; border: 1px solid black;'>" . parent::current(). "</td>";
-              }
-              function beginChildren() {
-                echo "<tr>";
-              }
-              function endChildren() {
-                echo "</tr>" . "\n";
-              }
-            }
-
-            foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-              echo $v;
-            }
-
-            echo '</table>';
-            */
-
-            if(!string.empty($cal_value)) {
-              $rows = db_select("SELECT * FROM 'myitems' WHERE $cal_value >= calories ORDER BY calories DESC");
-            } else {
-              $rows = db_select("SELECT * FROM 'myitems' ORDER BY calories DESC");
-            }
-
-            if(!$rows) { $error = db_error(); echo "<h1>Error:</h1><p>$error</p>"; } //display any db errors
-            //Echo the results of SQL query:
-            echo "<h1>Results:</h1>";
-            foreach($rows as $row) { echo "<p>$row</p>"; }
+            $query = "SELECT * FROM myItems";
+            db_select($query);
+            print_r($rows);
           ?>
         </div>
       </div>
