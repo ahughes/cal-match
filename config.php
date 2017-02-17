@@ -1,11 +1,8 @@
 <?php
 
+require_once('credentials.php'); //this contains all of our db connect info
 function db_connect() {
-    $dbhost = 'localhost';
-    $dbuser = 'Ala';
-    $dbpass = 'AlBr4460!';
-    $dbname = 'calories';
-    $conn = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
+    $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 
     // If connection is unsuccessful, handle error here
     if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
@@ -28,6 +25,7 @@ function db_query($query) {
     return $result;
 }
 
+//This will eventually be a db_select function to DRY up our code
 /*function db_select($query) {
     $rows = array();
     $result = db_query($query);
@@ -44,16 +42,5 @@ function db_query($query) {
     return $rows;
 }
 */
-/*function db_error() {
-    $connection = db_connect();
-    return mysqli_error($connection);
-}
-*/
-/*$rows = db_select("SELECT 'calories' FROM 'myitems' ORDER BY calories DESC"); //test query
-if(!$rows) { $error = db_error(); echo "<h1>Error:</h1><p>$error</p>"; } //display any db errors
-echo "<h1>Results:</h1>";
-foreach($rows as $row) {
-	echo "<p>$row</p>";
-}*/
 ?>
 

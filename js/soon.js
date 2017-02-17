@@ -43,7 +43,7 @@ COMMING SOON PAGE
             seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
             setTimeout(setDate, 1000);
 
-            message.html('OUR PROJECT IS DUE ON MAY 23, SO WE BETTER BE LIVE BY THEN!');
+            message.html("Check out what we're working on <a href='../template.php'>here</a>");
         }
     }
 })(jQuery);
