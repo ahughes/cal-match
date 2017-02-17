@@ -1,22 +1,10 @@
 <?php
 
 function db_connect() {
-
-    // Define connection as a static variable, to avoid connecting more than once 
-    static $connection;
-
-    // Connect to the database, if a connection has not been established yet
-    if(!isset($connection)) {
-        $conn = mysqli($dbhost,$dbuser,$dbpass,$dbname);
-    }
+    $conn = mysqli($dbhost,$dbuser,$dbpass,$dbname);
 
     // If connection is unsuccessful, handle error here
-    if($conn->connect_error) {
-        // TO DO: Set up error handling here
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    return $conn;
+    if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 }
 
 function db_query($query) {

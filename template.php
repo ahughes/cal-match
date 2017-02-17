@@ -1,5 +1,3 @@
-<?php require_once 'config.php'; ?>
-
 <!doctype html>
 <html>
   <head>
@@ -75,10 +73,10 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
-            include_once 'config.php';
-            $query = "SELECT * FROM myItems";
-            db_query($query);
-            print_r($result);
+            require_once('config.php');
+            $query1 = "SELECT * FROM myItems";
+            db_query($query1);
+
           ?>
         </div>
       </div>
