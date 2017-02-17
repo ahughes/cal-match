@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Calorie Match</title>
+    <title><?php echo $app_title; ?></title>
     <meta name="description" content="IS4460 Project by Group 19">
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?php echo "Calorie Match <small>Group 19</small>" ?></a>
+          <a class="navbar-brand" href="#"><?php echo $app_title .' <small>Group 19</small>'; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="form">
@@ -46,7 +46,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Hello, world!</h1>
-        <p>This is soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from various fast food restaurants.</p>
+        <p>Welcome to <?php echo $app_title; ?>This is soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from various fast food restaurants.</p>
         <p>This project is being developed as part of a group project for IS 4460</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign Up &raquo;</a></p>
       </div>
@@ -66,14 +66,14 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          <?php $cal_value = $_POST['cal_value']; ?>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
-            if(string.empty($cal_value)) {
+            if(isset($_POST['cal_value'])) {
+              $cal_value = $_POST['cal_value'];
               include_once('config.php');
               $query1 = "SELECT * FROM `myItems` WHERE `Calories` <= $cal_value";
               $result = db_query($query1);
