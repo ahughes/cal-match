@@ -66,17 +66,14 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          <?php 
-            $cal_value = -1;
-            $cal_value = $_POST['cal_value'];
-          ?>
+          <?php $cal_value = $_POST['cal_value']; ?>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
           <?php
-            if($cal_value != -1) {
+            if(string.empty($cal_value)) {
               include_once('config.php');
               $query1 = "SELECT * FROM `myItems` WHERE `Calories` <= $cal_value";
               $result = db_query($query1);
