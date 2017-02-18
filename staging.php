@@ -80,7 +80,7 @@
             $result = db_query($query1);
             while($row = $result->fetch_assoc()) {
               echo '<div class="col-sm-6 col-md-4">' . '<div class="thumbnail">';
-              echo '<img style="max-width: 75%;"  src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png" alt="Item image">' . '<div class="caption text$
+              echo '<img style="max-width: 75%;"  src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png" alt="Item image">' . '<div class="caption">';
               echo '<h3>' . $row['Name'] . '</h3>';
               echo '<p>' . $row['Calories'] . " calories</p>";
               echo '<p class="text-center"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>';
