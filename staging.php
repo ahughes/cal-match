@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/main.css">
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <script>window.html5 || document.write('<script src="js/html5shiv.js"><\/script>')</script>
     <![endif]-->
   </head>
   <body>
@@ -69,24 +69,27 @@
         </div>
       </div>
 
-      <div class="row"><br><br></div>
+      <br><br>
 
       <div class="row">
         <?php
           if(isset($_POST['cal_value'])) {
             $cal_value = $_POST['cal_value'];
             include_once('config.php');
-            $query1 = "SELECT * FROM `myItems` WHERE `Calories` <= $cal_value";
-            $result = db_query($query1);
-            while($row = $result->fetch_assoc()) {
-              echo '<div class="col-sm-6 col-md-4">' . '<div class="thumbnail">';
-              echo '<img style="max-width: 75%;"  src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png" alt="Item image">' . '<div class="caption">';
-              echo '<h3>' . $row['Name'] . '</h3>';
-              echo '<p>' . $row['Calories'] . " calories</p>";
-              echo '<p class="text-center"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>';
-              echo '</div></div></div>';
+            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value";
+            $rows = db_select($query1);
+            foreach($rows as $row) { echo '
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img style="max-width: 66%;" src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png" alt="Item image">
+                  <div class="caption text-center">
+                    <h3>' . $row['name'] . '</h3>
+                    <p>' . $row['calories'] . ' calories</p>
+                    <p>$' . $row['price'] . '.99  <a href="#" class="btn btn-primary" role="button">Order Now</a></p>
+                  </div>
+                </div>
+              </div>';
             }
-            $result->free();
           }
         ?>
       </div>

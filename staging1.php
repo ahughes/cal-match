@@ -69,22 +69,26 @@
         </div>
       </div>
 
+      <div class="row"><br><br></div>
+
       <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-          <?php
-            if(isset($_POST['cal_value'])) {
-              $cal_value = $_POST['cal_value'];
-              include_once('config.php');
-              $query1 = "SELECT * FROM `myItems` WHERE `Calories` <= $cal_value";
-              $result = db_query($query1);
-              echo "List of items with less than $cal_value calories:<br>";
-              while($row = $result->fetch_assoc()) {
-                echo $row['Name'] . ' (' . $row['Calories'] . ' calories)<br>';
-              }
-              $result->free();
+        <?php
+          if(isset($_POST['cal_value'])) {
+            $cal_value = $_POST['cal_value'];
+            include_once('config.php');
+            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value";
+            $result = db_query($query1);
+            while($row = $result->fetch_assoc()) {
+              echo '<div class="col-sm-6 col-md-4">' . '<div class="thumbnail">';
+              echo '<img style="max-width: 75%;" src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png" alt="Item image">' . '<div class="caption text-center">';
+              echo '<h3>' . $row['name'] . '</h3>';
+              echo '<p>' . $row['calories'] . " calories</p>";
+              echo '<p><a href="#" class="btn btn-primary" role="button">Order Now</a></p>';
+              echo '</div></div></div>';
             }
-          ?>
-        </div>
+            $result->free();
+          }
+        ?>
       </div>
 
       <hr>

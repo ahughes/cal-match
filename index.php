@@ -14,11 +14,9 @@
     <!-- Custom styles for this template -->
     <link href="css/soon.css" rel="stylesheet">
 
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script>window.html5 || document.write('<script src="js/html5shiv.js"><\/script>')</script>
     <![endif]-->
     
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>

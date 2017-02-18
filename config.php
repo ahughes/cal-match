@@ -26,22 +26,22 @@ function db_query($query) {
     return $result;
 }
 
-//This will eventually be a db_select function to DRY up our code
-/*function db_select($query) {
+function db_select($query) {
     $rows = array();
     $result = db_query($query);
 
-    // If query failed, return `false`
+    // If query fails, return `false`
     if($result === false) {
         return false;
     }
 
-    // If query was successful, retrieve all the rows into an array
+    // If query is successful, stick all the rows in an array
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
+    $result->free();
     return $rows;
 }
-*/
+
 ?>
 
