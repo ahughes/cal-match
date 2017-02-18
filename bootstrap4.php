@@ -90,7 +90,7 @@
             include_once('config.php');
             $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value";
             $rows = db_select($query1);
-            echo '<div class="card-columns">'
+            echo '<div class="card-columns">';
             foreach($rows as $row) { echo '
               <div class="card text-center">
                 <img class="card-img-top img-fluid" src="img/big-mac.png" alt="Item image">
