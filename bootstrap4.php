@@ -21,35 +21,41 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Calorie Match<small>Group 19</small></a>
+      <a class="navbar-brand text-info" href="#">Calorie Match</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Home&nbsp;<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">McDonald's</a>
               <a class="dropdown-item" href="#">Wendy's</a>
-              <a class="dropdown-item" href="#">Burger King</a>
+              <a class="dropdown-item" href="#">Burger&nbsp;King</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="#">Sign&nbsp;Up</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#">Contact&nbsp;Us</a>
+          </li>
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Sign In</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Sign Out</a>
-          </li>
+          </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Email">
-          <input class="form-control mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
+          <!-- <input class="form-control mr-sm-2" type="text" placeholder="Email"> -->
+          <!-- <input class="form-control mr-sm-2" type="password" placeholder="Password"> -->
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
         </form>
       </div>
     </nav>
@@ -58,26 +64,28 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">Hello, world!</h1>
-        <p>Welcome to Calorie Match! This is soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from various fast food restaurants.</p>
-        <p>This project is being developed as part of a group project for IS 4460</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign Up &raquo;</a></p>
+        <p>Welcome to Calorie Match! This is being developed as part of a group project for IS 4460. It's soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from fast food restaurants.</p>
+        <p>Want to give it a shot? Simply enter an amount of calories in the box below, and you will be shown all the possible food items with less than or equal to the amount of calories provided.</p>
+        <hr>
+        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button">Contact us &raquo;</a></p>
       </div>
     </div>
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-          <form class="form-inline" method="POST">
-            <div class="form-group">
-              <label class="sr-only" for="exampleInputAmount">Enter available calories:</label>
-              <div class="input-group">
-                <input name="cal_value" type="text" class="form-control" id="availableCals" placeholder="Example: 500" aria-describedby="Available Calories">
-                <span class="input-group-addon" id="availableCals-addon">calories</span>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-md-auto">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Enter available calories:</label>
+                <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories">
+                <span class="input-group-addon">calories</span>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
               </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -93,11 +101,11 @@
             echo '<div class="card-columns">';
             foreach($rows as $row) { echo '
               <div class="card text-center">
-                <img class="card-img-top img-fluid" src="img/big-mac.png" alt="Item image">
+                <img class="card-img-top" src="img/big-mac.png" alt="Item image">
                 <div class="card-block">
                   <h4 class="card-title">' . $row['name'] . '</h4>
-                  <p class="card-text">' . $row['calories'] . ' calories</p>
-                  <p class="card-text">$' . $row['price'] . '.99  <a href="#" class="btn btn-primary" role="button">Order Now</a></p>
+                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '.99  </p>
+                  <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
                 </div>
               </div>';
             }
