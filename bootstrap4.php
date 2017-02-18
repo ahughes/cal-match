@@ -55,6 +55,7 @@
         <form class="form-inline my-2 my-lg-0">
           <!-- <input class="form-control mr-sm-2" type="text" placeholder="Email"> -->
           <!-- <input class="form-control mr-sm-2" type="password" placeholder="Password"> -->
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Sign&nbsp;Up</button>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
         </form>
       </div>
@@ -72,20 +73,20 @@
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-md-auto">
-            <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Enter available calories:</label>
-                <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories">
-                <span class="input-group-addon">calories</span>
-                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-auto mb-3">Enter available calories:</div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-auto">
+          <form class="form-inline" method="POST">
+            <div class="form-group">
+              <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories">
+              <span class="input-group-addon">calories</span>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <button type="submit" class="btn btn-primary mx-3">Submit</button>
+          </form>
         </div>
       </div>
 
@@ -104,7 +105,7 @@
                 <img class="card-img-top" src="img/big-mac.png" alt="Item image">
                 <div class="card-block">
                   <h4 class="card-title">' . $row['name'] . '</h4>
-                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '.99  </p>
+                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '</p>
                   <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
                 </div>
               </div>';
