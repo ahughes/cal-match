@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <?php include_once 'variables.php' ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Group 19">
 
-    <title><?php echo $app_title ?></title>
+    <title>Calorie Match</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -34,7 +33,7 @@
         <div class="container">
           <header>
               <!-- HEADLINE -->
-              <h1 class="animated.GoIn"><b><?php echo $app_title ?></b> is coming soon...</h1>
+              <h1 class="animated.GoIn"><b>Calorie Match</b> is coming soon...</h1>
           </header>
           <!-- START TIMER -->
           <div id="timer" class="animated.FadeIn">
