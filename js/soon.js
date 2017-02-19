@@ -43,7 +43,7 @@ COMMING SOON PAGE
             seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
             setTimeout(setDate, 1000);
 
-            message.html('OUR PROJECT IS DUE ON MAY 23, SO WE BETTER BE LIVE BY THEN!');
+            message.html("<h3>Check out what we're working on <a href='../staging.php'>here</a></h3>");
         }
     }
 })(jQuery);
@@ -114,6 +114,6 @@ JQUERY BACKSTRETCH
         , "/img/3.jpg"
         , "/img/4.jpg"
         , "/img/5.jpg"
-        ], {duration: 3000, fade: 750});
+        ], {duration: 5000, fade: 1000});
 })(jQuery);
  
