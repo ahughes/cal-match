@@ -13,6 +13,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/soon.css" rel="stylesheet">
+    <style> p#message { font-size: 2em; font-weight: bolder; } </style>
 
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>

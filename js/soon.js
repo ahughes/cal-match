@@ -43,7 +43,7 @@ COMMING SOON PAGE
             seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
             setTimeout(setDate, 1000);
 
-            message.html("<h3>Check out what we're working on <a href='../staging.php'>here</a></h3>");
+            message.html("Check out what we're working on <a href='../current.php'>here</a>");
         }
     }
 })(jQuery);
