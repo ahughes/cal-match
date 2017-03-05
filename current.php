@@ -8,6 +8,7 @@
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <!--[if lt IE 9]>
@@ -66,7 +67,7 @@
         <p>Welcome to Calorie Match! This is being developed as part of a group project for IS 4460. It's soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from fast food restaurants.</p>
         <p>Want to give it a shot? Simply enter an amount of calories in the box below, and you will be shown all the possible food items with less than or equal to the amount of calories provided.</p>
         <hr>
-        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button">Contact us &raquo;</a></p>
+        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#contactUs">Contact us &raquo;</a></p>
       </div>
     </div>
 
@@ -143,7 +144,6 @@
           <div class="form-group float-right">
             <span id="reqMsg">All fields are required.</span>
             <button type="submit" class="btn btn-primary">Send <i class="fa fa-paper-plane-o"></i></button>
-            
           </div>
           </fieldset>
         </form>
