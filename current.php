@@ -94,12 +94,12 @@
           if(isset($_POST['cal_value'])) {
             $cal_value = $_POST['cal_value'];
             include_once('config/db_functions.php');
-            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value";
+            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value ORDER BY calories";
             $rows = db_select($query1);
             echo '<div class="card-columns">';
             foreach($rows as $row) { echo '
               <div class="card text-center">
-                <img class="card-img-top mx-auto" style="max-width: 150px;" src="img/big-mac.png" alt="Item image">
+                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $row['restaurantID'] . '.png" alt="Item image">
                 <div class="card-block">
                   <h4 class="card-title">' . $row['name'] . '</h4>
                   <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '</p>
@@ -117,40 +117,9 @@
         <p>&copy; 2017 | Group 19 | IS4460</p>
       </footer>
     </div> <!-- /container -->
-
-    <!-- ContactUs Modal -->
-    <div class="modal fade" id="contactUs" tabindex="-1" role="dialog" aria-labelledby="contactUsModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="contactUs">
-          <div class="form-group">
-            <input type="text" class="form-control" id="inputName" placeholder="Name">
-          </div>
-          <div class="form-group" id="emailInput">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-            <div class="form-control-feedback" hidden>Invalid email address.</div>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" id="inputMessage" placeholder="Message" rows="3"></textarea>
-          </div>
-          <fieldset id="validSend" disabled>
-          <div class="form-group float-right">
-            <span id="reqMsg">All fields are required.</span>
-            <button type="submit" class="btn btn-primary">Send <i class="fa fa-paper-plane-o"></i></button>
-          </div>
-          </fieldset>
-        </form>
-          </div>
-        </div>
-      </div>
-    </div> <!-- End of ContactUs Modal -->
+    
+    <!-- Include the Contact Us modal HTML partial -->
+    <?php include_once('partials/contactUsModal.php'); ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

@@ -5,6 +5,9 @@ body {
   padding-top: 2rem;
 }
 
+.logo {
+	padding: 1rem;
+}
 /*.card-columns {
   @include media-breakpoint-only(lg) {
     column-count: 4;
