@@ -1,6 +1,6 @@
 <?php
 
-require_once('config/credentials.php'); //this contains all of our db connect info
+require_once('credentials.php'); //this contains all of our db connect info
 
 function db_connect() {
     $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
