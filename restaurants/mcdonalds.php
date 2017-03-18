@@ -56,6 +56,7 @@
           <input class="form-control mr-sm-2" type="text" placeholder="Email">
           <input class="form-control mr-sm-2" type="password" placeholder="Password">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
+          <button href="#" class="btn btn-outline-secondary ml-2 my-2 my-sm-0"><i class="fa fa-shopping-cart"></i></button>
         </form>
       </div>
     </nav>
@@ -78,8 +79,8 @@
     
     <!-- Include partials -->
     <?php
-      include_once('partials/contactUsModal.php');
-      include_once('partials/signUpModal.php');
+      include_once('../partials/contactUsModal.php');
+      include_once('../partials/signUpModal.php');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
