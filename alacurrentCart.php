@@ -31,18 +31,18 @@
 include_once('config/db_functions.php');
 
 $query1 = "select * from cart c
-          inner join item i on i.itemID = c.itemID
-          inner join restaurant r on r.restaurantID = i.restaurantID
-          where c.cartID = 1";
+           inner join item i on i.itemID = c.itemID
+           inner join restaurant r on r.restaurantID = i.restaurantID
+           where c.cartID = 1";
 
 $rows = db_query($query1);
 
-$rows = $result->num_rows;
+$rowsCount = $result->num_rows;
 
 $totalAmt = 0;
 $totalCal = 0;
 
-for($j=0; $j<$rows; $j++){
+for($j=0; $j<$rowsCount; $j++){
   $result->data_seek($j);
   $row = $result->fetch_array(MYSQLI_NUM);
 
