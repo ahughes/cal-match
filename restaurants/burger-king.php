@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Calorie Match</title>
+    <title>Calorie Match - Burger King</title>
     <meta name="description" content="IS4460 Project by Group 19">
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,76 +63,11 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>Welcome to Calorie Match! This is being developed as part of a group project for IS 4460. It's soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from fast food restaurants.</p>
-        <p>Want to give it a shot? Simply enter an amount of calories in the box below, and you will be shown all the possible food items with less than or equal to the amount of calories provided.</p>
-        <hr>
-        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#contactUs">Contact us &raquo;</a></p>
+        <h1 class="display-3">Burger King</h1>
       </div>
     </div>
 
     <div class="container">
-      <!-- Search by item name -->
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3">Search available items:</div>
-      </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto">
-          <form class="form-inline" method="POST">
-            <!-- <div class="form-group"> -->
-              <input type="text" onkeyup="suggest(this.value)">
-            <!-- </div> -->
-          </form>
-        </div>
-      </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3"><p>Suggestions: <span id="search_suggestions"></span></p></div>
-      </div>
-
-      <!-- Search by number of calories -->
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3">Enter available calories:</div>
-      </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto">
-          <form class="form-inline" method="POST">
-            <div class="form-group">
-              <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories">
-              <span class="input-group-addon">calories</span>
-            </div>
-            <button type="submit" class="btn btn-primary mx-3" id="cal_val_submit">Submit</button>
-          </form>
-        </div>
-      </div>
-
-      <br><br>
-
-      <div class="row">
-        <?php
-          if(isset($_POST['cal_value'])) {
-            $cal_value = $_POST['cal_value'];
-            $remaining = $cal_value - 10;
-            include_once('config/db_functions.php');
-            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value ORDER BY calories";
-            $rows = db_select($query1);
-            echo '
-              <div class="progress" style="width: 100vw;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ' . ($remaining/$cal_value)*100 . '%">' . $remaining .' calories remaining</div>
-              </div><br><br>';
-            echo '<div class="card-columns">';
-            foreach($rows as $row) { echo '
-              <div class="card text-center">
-                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $row['restaurantID'] . '.png" alt="Item image">
-                <div class="card-block">
-                  <h4 class="card-title">' . $row['name'] . '</h4>
-                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '</p>
-                  <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
-                </div>
-              </div>';
-            }
-          }
-        ?>
-      </div>
 
       <hr>
 
