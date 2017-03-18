@@ -19,7 +19,7 @@
   </head>
   <body>
     <!-- Include the navigation bar -->
-    <? include_once('partials/nav.html'); ?>
+    <?php include_once('includes/nav.html'); ?>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -102,14 +102,15 @@
     
     <!-- Include modals -->
     <?php
-      include_once('partials/contactUsModal.html');
-      include_once('partials/signUpModal.html');
+      include_once('includes/contactUsModal.html');
+      include_once('includes/signUpModal.html');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+
 
   </body>
 </html>

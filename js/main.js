@@ -1,28 +1,38 @@
+//Simulate whether user is logged in or not
+$("#toggle-login").click(function() {
+  $("#nav-sign-in").attr("hidden", "hidden");
+  $("#nav-sign-out").removeAttr("hidden");
+});
+$("#toggle-logout").click(function() {
+  $("#nav-sign-out").attr("hidden", "hidden");
+  $("#nav-sign-in").removeAttr("hidden");
+});
+
 // 'Enter available calories' validation
 $(document).ready(function() {
-     $('#cal_val_submit').prop('disabled', true);
-     $('input[name="cal_value"]').keyup(function() {
-        if($(this).val() != '') {
-           $('#cal_val_submit').prop('disabled', false);
-        }
-     });
- });
+  $('#cal_val_submit').prop('disabled', true);
+  $('input[name="cal_value"]').keyup(function() {
+    if($(this).val() != '') {
+      $('#cal_val_submit').prop('disabled', false);
+    }
+  });
+});
 
 // Suggestions for searching
 function suggest(str) {
-    if (str.length == 0) { 
-        document.getElementById("search_suggestions").innerHTML = "";
-        return;
-    } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("search_suggestions").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET", "config/suggestions.php?q=" + str, true);
-        xmlhttp.send();
-    }
+  if (str.length == 0) {
+    document.getElementById("search_suggestions").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("search_suggestions").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "config/suggestions.php?q=" + str, true);
+    xmlhttp.send();
+  }
 }
 
 // Contact Us Modal validation

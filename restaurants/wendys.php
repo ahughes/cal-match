@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Calorie Match</title>
+    <title>Calorie Match - Wendy's</title>
     <meta name="description" content="IS4460 Project by Group 19">
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,10 @@
   </head>
   <body>
     <!-- Include the navigation bar -->
-    <? include_once('partials/nav.html'); ?>
+    <?php include_once('../includes/nav.html'); ?>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="jumbotron mt-4">
       <div class="container">
         <h1 class="display-3">Wendy's</h1>
       </div>
@@ -38,8 +38,8 @@
     
     <!-- Include modals -->
     <?php
-      include_once('../partials/contactUsModal.html');
-      include_once('../partials/signUpModal.html');
+      include_once('../includes/contactUsModal.html');
+      include_once('../includes/signUpModal.html');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

@@ -18,7 +18,7 @@
   </head>
   <body>
     <!-- Include the navigation bar -->
-    <? include_once('partials/nav.html'); ?>
+    <?php include_once('../includes/nav.html'); ?>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -38,8 +38,8 @@
     
     <!-- Include modals -->
     <?php
-      include_once('../partials/contactUsModal.html');
-      include_once('../partials/signUpModal.html');
+      include_once('../includes/contactUsModal.html');
+      include_once('../includes/signUpModal.html');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
