@@ -1,0 +1,44 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand text-info" href="#">Calorie Match</a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../current.php">Home&nbsp;<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants Near Me</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="../restaurants/mcdonalds.php">McDonald's</a>
+          <a class="dropdown-item" href="../restaurants/wendys.php">Wendy's</a>
+          <a class="dropdown-item" href="../restaurants/burger-king.php">Burger&nbsp;King</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign&nbsp;Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactUs">Contact&nbsp;Us</a>
+      </li>
+    </ul>
+    
+    <!-- This form will appear until the user is signed in -->
+    <form id="nav-sign-in" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Email">
+      <input class="form-control mr-sm-2" type="password" placeholder="Password">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
+    </form>
+
+    <!-- The following form will only appear when the user is signed in -->
+    <form id="nav-sign-out" class="form-inline my-2 my-lg-0" hidden>
+      <button href="#" class="btn btn-outline-secondary mr-2 my-2 my-sm-0"><i class="fa fa-shopping-cart"></i></button>
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign&nbsp;Out</button>
+    </form>
+  </div>
+</nav>
