@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+  <?php include_once('config/db_functions.php'); ?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,49 +18,8 @@
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand text-info" href="#">Calorie Match</a>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home&nbsp;<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants Near Me</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="../restaurants/mcdonalds.php">McDonald's</a>
-              <a class="dropdown-item" href="../restaurants/wendys.php">Wendy's</a>
-              <a class="dropdown-item" href="../restaurants/burger-king.php">Burger&nbsp;King</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign&nbsp;Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#contactUs">Contact&nbsp;Us</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Sign In</a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#">Sign Out</a>
-          </li> -->
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Email">
-          <input class="form-control mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
-          <button href="#" class="btn btn-outline-secondary ml-2 my-2 my-sm-0"><i class="fa fa-shopping-cart"></i></button>
-        </form>
-      </div>
-    </nav>
+    <!-- Include the navigation bar -->
+    <?php include_once('includes/nav.html'); ?>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -113,20 +73,18 @@
           if(isset($_POST['cal_value'])) {
             $cal_value = $_POST['cal_value'];
             $remaining = $cal_value - 10;
-            include_once('config/db_functions.php');
-            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value ORDER BY calories";
-            $rows = db_select($query1);
+            $items = items_under_cal_value($cal_value);
             echo '
               <div class="progress" style="width: 100vw;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ' . ($remaining/$cal_value)*100 . '%">' . $remaining .' calories remaining</div>
               </div><br><br>';
             echo '<div class="card-columns">';
-            foreach($rows as $row) { echo '
+            foreach($items as $item) { echo '
               <div class="card text-center">
-                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $row['restaurantID'] . '.png" alt="Item image">
+                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $item['restaurantID'] . '.png" alt="Item image">
                 <div class="card-block">
-                  <h4 class="card-title">' . $row['name'] . '</h4>
-                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '</p>
+                  <h4 class="card-title">' . $item['name'] . '</h4>
+                  <p class="card-text">' . $item['calories'] . ' calories  |  $' . $item['price'] . '</p>
                   <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
                 </div>
               </div>';
@@ -142,16 +100,17 @@
       </footer>
     </div> <!-- /container -->
     
-    <!-- Include partials -->
+    <!-- Include modals -->
     <?php
-      include_once('includes/contactUsModal.php');
-      include_once('includes/signUpModal.php');
+      include_once('includes/contactUsModal.html');
+      include_once('includes/signUpModal.html');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+
 
   </body>
 </html>
