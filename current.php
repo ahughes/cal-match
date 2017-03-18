@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+  <?php include_once('config/db_functions.php'); ?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -112,20 +113,18 @@
           if(isset($_POST['cal_value'])) {
             $cal_value = $_POST['cal_value'];
             $remaining = $cal_value - 10;
-            include_once('config/db_functions.php');
-            $query1 = "SELECT * FROM `item` WHERE `calories` <= $cal_value ORDER BY calories";
-            $rows = db_select($query1);
+            $items = items_under_cal_value($cal_value);
             echo '
               <div class="progress" style="width: 100vw;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ' . ($remaining/$cal_value)*100 . '%">' . $remaining .' calories remaining</div>
               </div><br><br>';
             echo '<div class="card-columns">';
-            foreach($rows as $row) { echo '
+            foreach($items as $item) { echo '
               <div class="card text-center">
-                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $row['restaurantID'] . '.png" alt="Item image">
+                <img class="card-img-top mx-auto logo" style="max-width: 150px;" src="img/logo' . $item['restaurantID'] . '.png" alt="Item image">
                 <div class="card-block">
-                  <h4 class="card-title">' . $row['name'] . '</h4>
-                  <p class="card-text">' . $row['calories'] . ' calories  |  $' . $row['price'] . '</p>
+                  <h4 class="card-title">' . $item['name'] . '</h4>
+                  <p class="card-text">' . $item['calories'] . ' calories  |  $' . $item['price'] . '</p>
                   <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
                 </div>
               </div>';

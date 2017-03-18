@@ -43,5 +43,21 @@ function db_select($query) {
     return $rows;
 }
 
+function items_under_cal_value($cals) {
+    $conn = db_connect(); //connect to db
+
+    $stmt = $conn->prepare("SELECT * FROM `item` WHERE `calories` <= ? ORDER BY `calories`");
+    $stmt->bind_param('i', $cals);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result === false) { return false; } // If query fails, return `false`
+    $rows = array(); //Create array to store results
+    while ($row = mysqli_fetch_assoc($result)) { $rows[] = $row; } // If query is successful, stick all the rows in an array
+    $result->free();
+    $conn->close();
+    return $rows;
+}
+
 ?>
 
