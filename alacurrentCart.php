@@ -69,10 +69,9 @@ $totalCal += $cal;
 }
 ?>
 
-
 <TR>
     <TD style="border-top:1px solid black">
-      <LABEL>State Food Tax Rate 4.71%</LABEL>
+      <LABEL>SUBTOTAL</LABEL>
     </TD>
     <TD style="border-top:1px solid black">
       <LABEL></LABEL>
@@ -80,13 +79,32 @@ $totalCal += $cal;
     <TD style="border-top:1px solid black">
       <LABEL>
         <?php 
+        echo "$ ".$totalAmt; ?></LABEL>
+    </TD>
+    <TD style="border-top:1px solid black">
+      <LABEL>
+      </LABEL>
+    </TD>
+</TR>
+
+<TR>
+    <TD>
+      <LABEL>UT STATE FOOD TAX RATE (4.71%)</LABEL>
+    </TD>
+    <TD>
+      <LABEL></LABEL>
+    </TD>
+    <TD>
+      <LABEL>
+        <?php 
         $tax=0.0471; 
         $plusTax = money_format('%i',$totalAmt * $tax); 
         echo '$ '.$plusTax; ?></LABEL>
     </TD>
-    <TD style="border-top:1px solid black">
+    <TD>
     </TD>
 </TR>
+
 <TR>
     <TD style="border-top:1px solid black">
       <LABEL>TOTAL</LABEL>

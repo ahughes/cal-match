@@ -1,6 +1,57 @@
+<?php
+//Credentials for connection
+include_once('config/db_functions.php');
+
+//Declare variables to be used
+$cartID   = "";
+$itemID   = "";
+$addItem  = "";
+$message  = "";
+$msg      = "";
+
+//If a cart exists, keep the same cart
+if(isset($_GET['cartID'])){
+  $cartID = $_GET['cartID'];
+}
+else{
+  $query4 = "SELECT * FROM cart ORDER BY cartID DESC LIMIT 1";
+  $rows   = db_select($query4);
+  foreach($rows as $row){
+    $cartID = $row['cartID'] + 1;
+  }
+}
+
+//If an itemID is passed in grab the value
+if(isset(   $_GET['itemID'])){
+  $itemID = $_GET['itemID'];
+}
+
+//If you are adding an item to a cart grab that value
+if(isset(     $_GET['addItem'])){
+  $addItem =  $_GET['addItem'];
+}
+
+//Checks to make sure all paramaters are in place for adding to a 
+if(($cartID != "") && ($itemID != "") && ($addItem == "add")){
+  $query5 = "INSERT INTO cart (cartID ,  itemID) 
+                      VALUES('$cartID','$itemID')";
+  $rows = db_query($query5);
+  
+  //Checks to make sure no errors occured while inserting data
+  if($rows){
+    $msg = "Item has been added to your cart";
+    header("Location: alacurrent.php?cartID=".$cartID."&msg=".$msg);
+  }
+  else{
+    $msg = "Failed to add item to cart"
+    header("Location: alacurrent.php?cartID=".$cartID."&msg=".$msg);
+  }
+}
+
+?>
+
 <!doctype html>
 <html>
-  <?php include_once('config/db_functions.php'); ?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,10 +59,22 @@
     <meta name="description" content="IS4460 Project by Group 19">
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
+    <?php
+
+      if(isset($_GET['msg'])){
+          $message = $_GET['msg'];
+
+          if($message != ""){
+            echo'<SCRIPT>';
+              echo'alert("'.$message.'")';
+            echo'</SCRIPT>';
+          }
+      }
+
+    ?>
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script>window.html5 || document.write('<script src="js/html5shiv.js"><\/script>')</script>
@@ -85,7 +148,8 @@
                 <div class="card-block">
                   <h4 class="card-title">' . $item['name'] . '</h4>
                   <p class="card-text">' . $item['calories'] . ' calories  |  $' . $item['price'] . '</p>
-                  <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
+                  <p class="card-text"><a href="alacurrent.php?cartID='.$cartID.'&itemID='.$item['itemID'].'&addItem=add" class="btn btn-primary" role="button">ORDER NOW</a></p>
+
                 </div>
               </div>';
             }

@@ -46,7 +46,7 @@ function db_select($query) {
 function items_under_cal_value($cals) {
     $conn = db_connect(); //connect to db
 
-    $stmt = $conn->prepare("SELECT * FROM `item` WHERE `calories` <= ? ORDER BY `calories`");
+    $stmt = $conn->prepare("SELECT * FROM `item` WHERE `calories` <= ? ORDER BY RAND() LIMIT 5");
     $stmt->bind_param('i', $cals);
     $stmt->execute();
     $result = $stmt->get_result();
