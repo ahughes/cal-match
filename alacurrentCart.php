@@ -29,45 +29,40 @@
 <?php
 
 include_once('config/db_functions.php');
-
+            
 $query1 = "select * from cart c
-           inner join item i on i.itemID = c.itemID
-           inner join restaurant r on r.restaurantID = i.restaurantID
-           where c.cartID = 1";
-
-$rows = db_query($query1);
-
-$rowsCount = $result->num_rows;
+          inner join item i on i.itemID = c.itemID
+          inner join restaurant r on r.restaurantID = i.restaurantID
+          where c.cartID = 1";
+$rows = db_select($query1);
 
 $totalAmt = 0;
 $totalCal = 0;
 
-for($j=0; $j<$rowsCount; $j++){
-  $result->data_seek($j);
-  $row = $result->fetch_array(MYSQLI_NUM);
+foreach($rows as $row){
 
-$total = $row[6];
+$total = $row['price'];
 $totalAmt += $total;
 
-$cal = $row[5];
+$cal = $row['calories'];
 $totalCal += $cal;
 
  echo'
     <TR>
     <TD>
-      <LABEL>'.$row[4].'</LABEL>
+      <LABEL>'.$row['name'].'</LABEL>
     </TD>
     <TD>
-      <LABEL>'.$row[8].'</LABEL>
+      <LABEL>'.$row['restaurantName'].'</LABEL>
     </TD>
     <TD>
-      <LABEL>$ '.$row[6].'</LABEL>
+      <LABEL>$ '.$row['price'].'</LABEL>
     </TD>
     <TD>
-      <LABEL>'.$row[5].'</LABEL>
+      <LABEL>'.$row['calories'].'</LABEL>
     </TD>
     <TD style="text-align:center">
-      <INPUT TYPE="BUTTON" NAME=cartID'.$row[0].' '.'itemID'.$row[1].' VALUE="X">
+      <INPUT TYPE="BUTTON" NAME=cartID'.$row['cartID'].' '.'itemID'.$row['itemID'].' VALUE="X">
     </TD>
   </TR>
 ';
