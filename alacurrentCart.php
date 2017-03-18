@@ -35,35 +35,17 @@ $query1 = "select * from cart c
           inner join restaurant r on r.restaurantID = i.restaurantID
           where c.cartID = 1";
 
-$rows = db_select($query1);
+$rows = db_query($query1);
 
-foreach($rows as $row) { echo '
-              
-  <TR>
-    <TD>
-      <LABEL>'.$row[name].'</LABEL>
-    </TD>
-    <TD>
-      <LABEL>'.$row[name].'</LABEL>
-    </TD>
-    <TD>
-      <LABEL>$ '.$row[cartID].'</LABEL>
-    </TD>
-    <TD>
-      <LABEL>'.$row[cartID].'</LABEL>
-    </TD>
-    <TD style="text-align:center">
-      <INPUT TYPE="BUTTON" NAME=cartID'.$row[0].' '.'itemID'.$row[1].' VALUE="X">
-    </TD>
-  </TR>';
-}
+$rows = $result->num_rows;
 
+$totalAmt = 0;
+$totalCal = 0;
 
+for($j=0; $j<$rows; $j++){
+  $result->data_seek($j);
+  $row = $result->fetch_array(MYSQLI_NUM);
 
-
-
-
-/*
 $total = $row[6];
 $totalAmt += $total;
 
@@ -90,7 +72,6 @@ $totalCal += $cal;
   </TR>
 ';
 }
-*/
 ?>
 
 
