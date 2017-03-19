@@ -15,35 +15,34 @@ if(isset($_GET['cartID'])){
 }
 else{
   $query4 = "SELECT * FROM cart ORDER BY cartID DESC LIMIT 1";
-  $rows   = db_select($query4);
+  $rows = db_select($query4);
   foreach($rows as $row){
     $cartID = $row['cartID'] + 1;
   }
 }
 
 //If an itemID is passed in grab the value
-if(isset(   $_GET['itemID'])){
+if(isset($_GET['itemID'])){
   $itemID = $_GET['itemID'];
 }
 
 //If you are adding an item to a cart grab that value
-if(isset(     $_GET['addItem'])){
-  $addItem =  $_GET['addItem'];
+if(isset($_GET['addItem'])){
+  $addItem = $_GET['addItem'];
 }
 
 //Checks to make sure all paramaters are in place for adding to a 
 if(($cartID != "") && ($itemID != "") && ($addItem == "add")){
-  $query5 = "INSERT INTO cart (cartID ,  itemID) 
-                      VALUES('$cartID','$itemID')";
+  $query5 = "INSERT INTO cart (cartID, itemID) VALUES('$cartID','$itemID')";
   $rows = db_query($query5);
   
   //Checks to make sure no errors occured while inserting data
   if($rows){
-    $msg = "Item has been added to your cart";
-    header("Location: alacurrent.php?cartID=".$cartID."&msg=".$msg);
+    $msg = "Added item successfully";
+    header("Location: alacurrentCart.php?cartID=".$cartID."&msg=".$msg);
   }
   else{
-    $msg = "Failed to add item to cart"
+    $msg = "Failed to add item to cart";
     header("Location: alacurrent.php?cartID=".$cartID."&msg=".$msg);
   }
 }

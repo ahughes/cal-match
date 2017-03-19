@@ -1,8 +1,21 @@
 <!DOCTYPE HTML>
-
 <HEADER><h2>Cart</h2></HEADER>
 <HEAD>
+<?php
 
+$message = "";
+
+if(isset($_GET['msg'])){
+  $message = $_GET['msg'];
+
+  if($message != ""){
+    echo'<SCRIPT>';
+      echo'alert("'.$message.'")';
+    echo'</SCRIPT>';
+  }
+}
+
+?>
 </HEAD>
 <BODY>
   <DIV>
@@ -29,12 +42,19 @@
 <?php
 
 include_once('config/db_functions.php');
-            
-$query1 = "select * from cart c
-          inner join item i on i.itemID = c.itemID
-          inner join restaurant r on r.restaurantID = i.restaurantID
-          where c.cartID = 1";
-$rows = db_select($query1);
+
+$cartID  = "";
+
+if(isset($_GET['cartID'])){
+  $cartID = $_GET['cartID'];
+}
+         
+$query = "SELECT * FROM cart c 
+          INNER JOIN item i ON i.itemID = c.itemID 
+          INNER JOIN restaurant r ON r.restaurantID = i.restaurantID 
+          WHERE c.cartID = ".$cartID;
+
+$rows = db_select($query);
 
 $totalAmt = 0;
 $totalCal = 0;
@@ -47,8 +67,8 @@ $totalAmt += $total;
 $cal = $row['calories'];
 $totalCal += $cal;
 
- echo'
-    <TR>
+echo'
+  <TR>
     <TD>
       <LABEL>'.$row['name'].'</LABEL>
     </TD>
@@ -67,6 +87,7 @@ $totalCal += $cal;
   </TR>
 ';
 }
+
 ?>
 
 <TR>
@@ -78,8 +99,8 @@ $totalCal += $cal;
     </TD>
     <TD style="border-top:1px solid black">
       <LABEL>
-        <?php 
-        echo "$ ".$totalAmt; ?></LABEL>
+        <?php echo "$ ".$totalAmt; ?>
+      </LABEL>
     </TD>
     <TD style="border-top:1px solid black">
       <LABEL>
@@ -89,7 +110,7 @@ $totalCal += $cal;
 
 <TR>
     <TD>
-      <LABEL>UT STATE FOOD TAX RATE (4.71%)</LABEL>
+      <LABEL>UT FOOD TAX RATE (4.71%)</LABEL>
     </TD>
     <TD>
       <LABEL></LABEL>
@@ -99,7 +120,8 @@ $totalCal += $cal;
         <?php 
         $tax=0.0471; 
         $plusTax = money_format('%i',$totalAmt * $tax); 
-        echo '$ '.$plusTax; ?></LABEL>
+        echo '$ '.$plusTax; ?>
+      </LABEL>
     </TD>
     <TD>
     </TD>
@@ -117,7 +139,9 @@ $totalCal += $cal;
         <?php 
         $grandtotal = ($totalAmt * $tax)+$totalAmt;
         $grandtotal = money_format('%i',$grandtotal);
-        echo "$ ".$grandtotal; ?></LABEL>
+        echo "$ ".$grandtotal; 
+        ?>
+      </LABEL>
     </TD>
     <TD style="border-top:1px solid black">
       <LABEL>
@@ -131,16 +155,9 @@ $totalCal += $cal;
 
 </TABLE>
 <BR/>
-<INPUT TYPE="BUTTON" VALUE="ADD MORE ITEMS">
+<?php
+echo'<A HREF="alacurrent.php?cartID='.$cartID.'"><INPUT TYPE="BUTTON" VALUE="ADD MORE ITEMS"></A>';
+?>
 <INPUT TYPE="BUTTON" VALUE="CHECKOUT">
-
 </BODY>
-
-
 </HTML>
-<style>
-  
-  div{
-    /*display:inline-block;*/
-  }
-</style>
