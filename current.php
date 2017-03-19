@@ -20,15 +20,21 @@
   <body>
     <!-- Include the navigation bar -->
     <?php include_once('includes/nav.html'); ?>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>Welcome to Calorie Match! This is being developed as part of a group project for IS 4460. It's soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from fast food restaurants.</p>
-        <p>Want to give it a shot? Simply enter an amount of calories in the box below, and you will be shown all the possible food items with less than or equal to the amount of calories provided.</p>
-        <hr>
-        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#contactUs">Contact us &raquo;</a></p>
+    
+    <div class="jumbotron jumbotron-fluid" id="hero-container">
+      <div class="jumbotron" id="hero">
+        <div class="container text-center">
+          <div class="btn-lg"><img src="../img/fast-food-info.svg" id="icon" alt="Fast Food Icon"></div>
+          <!-- Icons made by Freepik from flaticon.com CC 3.0 license -->
+          <span class="lead" style="font-family: cursive;">Welcome to</span>
+          <h1 class="display-3 text-center font-weight-bold pb-5 mb-5">Calorie Match</h1>
+          <hr class="m-y-md mt-5">
+          <p>This was created as part of a group project for IS 4460.</p>
+          <p class="lead">
+            <a class="btn btn-info btn-lg mx-2" href="#" role="button">Get Started</a>
+            <a class="btn btn-warning btn-lg mx-2" href="about.php">Learn More</a>
+          </p>
+        </div>
       </div>
     </div>
 

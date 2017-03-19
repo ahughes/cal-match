@@ -8,11 +8,41 @@ body {
 .logo {
 	padding: 1rem;
 }
-/*.card-columns {
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
   }
-  @include media-breakpoint-only(xl) {
-    column-count: 5;
+}
+
+#hero-container {
+  background-image: url('../img/1.jpg');
+  background-size: cover;
+  padding: 0;
+  height: 100vh;
+}
+
+#hero {
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+#hero h1 {
+  color: white;
+  filter: drop-shadow( -2px -2px 2px #000 );
+}
+
+#icon {
+  width: 50%;
+  -webkit-filter: drop-shadow( -5px -5px 5px #000 );
+  filter: drop-shadow( -5px -5px 5px #000 );
+}
+
+@media (min-width: 768px) {
+  #hero-container {
+    height: 96vh;
   }
-}*/
+  #icon {
+    width: 25%;
+  }
+}
