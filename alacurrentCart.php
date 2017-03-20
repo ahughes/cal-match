@@ -26,8 +26,14 @@ if(isset($_GET['delItem'])){
 
     $rows = db_query($query);
     if($rows){
+      if($cartID == ""){
+        $msg = "Cart is empty, add items to cart";
+        header("Location: alacurrent.php?cartID=".$cartID."&msg=".$msg);
+      }
+      else{
       $msg = "Item removed from Cart successfully";
       header("Location: alacurrentCart.php?cartID=".$cartID."&msg=".$msg);
+      }
     }
     else
       $msg = "Could not remove item from Cart";
@@ -85,7 +91,8 @@ if(isset($_GET['msg'])){
 $query = "SELECT * FROM cart c 
           INNER JOIN item i ON i.itemID = c.itemID 
           INNER JOIN restaurant r ON r.restaurantID = i.restaurantID 
-          WHERE c.cartID = ".$cartID;
+          WHERE c.cartID = ".$cartID."
+          ORDER BY c.cartItemID ASC";
 
 $rows = db_select($query);
 
@@ -115,7 +122,7 @@ echo'
       <LABEL>'.$row['calories'].'</LABEL>
     </TD>
     <TD style="text-align:center">
-      <A HREF="alacurrentCart.php?cartItemID='.$row['cartItemID'].'&delItem=delete"><INPUT TYPE="BUTTON" VALUE="X"></A>
+      <A HREF="alacurrentCart.php?cartItemID='.$row['cartItemID'].'&cartID='.$row['cartID'].'&delItem=delete"><INPUT TYPE="BUTTON" VALUE="X"></A>
     </TD>
   </TR>
 ';
