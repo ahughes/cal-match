@@ -19,21 +19,63 @@
   </head>
   <body>
     <!-- Include the navigation bar -->
-    <?php include_once('includes/nav.html'); ?>
+    <?php include_once('includes/nav.html');?>
+    
+    <?php 
+      $query1 = "SELECT * FROM cart c INNER JOIN item i ON i.itemID = c.itemID INNER JOIN restaurant r ON r.restaurantID = i.restaurantID WHERE c.cartID = 1";
+      $rows = db_select($query1);
+      $totalAmt = 0;
+      $totalCal = 0;
+      define("TAX", 0.0471);
+    ?>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>Welcome to Calorie Match! This is being developed as part of a group project for IS 4460. It's soon going to be an awesome web application to help track calorie consumption by matching "available calories" with menu items from fast food restaurants.</p>
-        <p>Want to give it a shot? Simply enter an amount of calories in the box below, and you will be shown all the possible food items with less than or equal to the amount of calories provided.</p>
-        <hr>
-        <p>Have an awesome idea for our project? Found a bug? Want to give us a thumbs up? <a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#contactUs">Contact us &raquo;</a></p>
-      </div>
-    </div>
+    <div class="container py-5">
+      <table class="table table-hover">
+        <thead class="thead-default">
+          <tr>
+            <th>Item</th>
+            <th>Restaurant</th>
+            <th>Price</th>
+            <th>Calories</th>
+            <th class="text-center"><img src="img/remove.png" width="40px"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($rows as $row){ $totalAmt += $row['price']; $totalCal += $row['calories']; echo '
+          <tr>
+            <td>' . $row['name'] .'</td>
+            <td>' . $row['restaurantName'] .'</td>
+            <td>' . $row['price'] .'</td>
+            <td>' . $row['calories'] .'</td>
+            <td class="text-center"><i class="fa fa-minus-circle"></i></td>
+            <!-- <INPUT TYPE="BUTTON" NAME=cartID'.$row['cartID'].' '.'itemID'.$row['itemID'].' VALUE="X"> -->
+          </tr>';
+        }?>
+        
+          <tr>
+            <th scope="row" colspan="2">Subtotal</th>
+            <td><?php echo '$ ' . $totalAmt; ?></td>
+          </tr>
 
-    <div class="container">      
+          <tr>
+            <th scope="row" colspan="2">Tax</th>
+            <td><?php echo '$ ' . money_format('%i',$totalAmt * TAX); ?></td>
+          </tr>
 
+          <tr class="table-active">
+            <th scope="row" colspan="2">Total</th>
+            <td><?php echo '$ ' . money_format('%i',($totalAmt * TAX)+$totalAmt); ?></td>
+            <td><?php echo $totalCal; ?></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <br>
+      
+      <input type="button" value="ADD MORE ITEMS">
+      <input type="button" value="CHECKOUT">
+      
       <hr>
 
       <footer>
@@ -51,8 +93,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
-    <script>$("#nav-about").addClass("active");</script>
-
-
   </body>
 </html>
