@@ -34,21 +34,19 @@
       <table id="cart-table" class="table">
         <thead class="thead-default">
           <tr>
-            <th>Item&nbsp;(Calories)</th>
             <th>Restaurant</th>
+            <th>Item&nbsp;(Calories)</th>
             <th>Price</th>
-            <!-- <th>Calories</th> -->
             <th class="text-center"><img src="img/remove.png" width="40px"></th>
           </tr>
         </thead>
         <tbody>
         <?php foreach($rows as $row){ $totalAmt += $row['price']; $totalCal += $row['calories']; echo '
           <tr class="lineitem">
+            <td><strong>' . $row['restaurantName'] .'</strong></td>
             <td>' . $row['name'] .' (' . $row['calories'] . ')</td>
-            <td>' . $row['restaurantName'] .'</td>
-            <td>' . $row['price'] .'</td>
+            <td>$&nbsp;' . $row['price'] .'</td>
             <td class="text-center"><i class="remove-btn fa fa-minus-circle hidden"></i></td>
-            <!-- <INPUT TYPE="BUTTON" NAME=cartID'.$row['cartID'].' '.'itemID'.$row['itemID'].' VALUE="X"> -->
           </tr>';
         }?>
         
@@ -70,10 +68,13 @@
         </tbody>
       </table>
 
-      <br>
+      <hr>
       
-      <input type="button" value="ADD MORE ITEMS">
-      <input type="button" value="CHECKOUT">
+      <div class="text-center">
+        <a href="current.php" class="mx-2 btn btn-outline-info">Add more items</a>
+        <a href="editCart.php" class="mx-2 btn btn-outline-warning" disabled>Edit Cart</a>
+        <button class="mx-2 btn btn-outline-success">Checkout</button>
+      </div>
       
       <hr>
 
@@ -86,6 +87,7 @@
     <?php
       include_once('includes/contactUsModal.html');
       include_once('includes/signUpModal.html');
+      include_once('includes/cartModal.php');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
