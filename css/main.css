@@ -38,6 +38,10 @@ body {
   filter: drop-shadow( -5px -5px 5px #000 );
 }
 
+.table-border-top {
+  border-top: 2px solid black;
+}
+
 @media (min-width: 768px) {
   #hero-container {
     height: 96vh;
