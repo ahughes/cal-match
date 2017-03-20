@@ -1,6 +1,46 @@
+<?php
+
+include_once('config/db_functions.php');
+
+$cartID  = "";
+$itemID  = "";
+$delItem = "";
+
+if(isset($_GET['cartID'])){
+  $cartID = $_GET['cartID'];
+}
+
+if(isset($_GET['itemID'])){
+  $itemID = $_GET['itemID'];
+}
+
+if(isset($_GET['cartItemID'])){
+  $cartItemID = $_GET['cartItemID'];
+}
+
+if(isset($_GET['delItem'])){
+  $delItem = $_GET['delItem'];
+  if(($cartItemID != "") && ($delItem == "delete")){
+    $query = "DELETE FROM cart
+              WHERE cartItemID =".$cartItemID;
+
+    $rows = db_query($query);
+    if($rows){
+      $msg = "Item removed from Cart successfully";
+      header("Location: alacurrentCart.php?cartID=".$cartID."&msg=".$msg);
+    }
+    else
+      $msg = "Could not remove item from Cart";
+      header("Location: alacurrentCart.php?cartID=".$cartID."&msg=".$msg);
+  }
+}
+
+?>
+
 <!DOCTYPE HTML>
 <HEADER><h2>Cart</h2></HEADER>
 <HEAD>
+
 <?php
 
 $message = "";
@@ -16,6 +56,7 @@ if(isset($_GET['msg'])){
 }
 
 ?>
+
 </HEAD>
 <BODY>
   <DIV>
@@ -40,14 +81,6 @@ if(isset($_GET['msg'])){
   </TR>
 
 <?php
-
-include_once('config/db_functions.php');
-
-$cartID  = "";
-
-if(isset($_GET['cartID'])){
-  $cartID = $_GET['cartID'];
-}
          
 $query = "SELECT * FROM cart c 
           INNER JOIN item i ON i.itemID = c.itemID 
@@ -82,7 +115,7 @@ echo'
       <LABEL>'.$row['calories'].'</LABEL>
     </TD>
     <TD style="text-align:center">
-      <INPUT TYPE="BUTTON" NAME=cartID'.$row['cartID'].' '.'itemID'.$row['itemID'].' VALUE="X">
+      <A HREF="alacurrentCart.php?cartItemID='.$row['cartItemID'].'&delItem=delete"><INPUT TYPE="BUTTON" VALUE="X"></A>
     </TD>
   </TR>
 ';
