@@ -41,11 +41,11 @@
 
     <div class="container">
       <!-- Search by item name -->
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3">Search available items:</div>
+      <div class="row justify-content-sm-center mx-auto">
+        <div class="col-12 mx-auto mb-3">Search available items:</div>
       </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto">
+      <div class="row justify-content-sm-center mx-auto">
+        <div class="col-12 mx-auto">
           <form class="form-inline" method="POST">
               <input id="search-box" type="text" class="ui-autocomplete-input" autocomplete="off">
           </form>

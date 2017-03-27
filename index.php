@@ -36,7 +36,7 @@
           </header>
           <!-- START TIMER -->
           <div id="timer" class="animated.FadeIn">
-              <p id="message"></p>
+              <p style="font-size: 3rem;"><a href="current.php">Check out the beta here</a></p>
               <div id="days" class="timer_box"></div>
               <div id="hours" class="timer_box"></div>
               <div id="minutes" class="timer_box"></div>

@@ -1,3 +1,5 @@
+<!-- This is out of date and has been replaced with editCart.php and the cart modal. The logic is in config/cart_functions.php -->
+
 <?php
 
 include_once('config/db_functions.php');
