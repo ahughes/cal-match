@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <?php include_once('config/db_functions.php'); ?>
+  <?php require_once('config/db_functions.php'); ?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +9,7 @@
     <meta name="author" content="Ala Brown, Alexander Hughes, and David Houghton">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
@@ -46,14 +47,9 @@
       <div class="row justify-content-sm-center">
         <div class="col-12 col-xs-auto">
           <form class="form-inline" method="POST">
-            <!-- <div class="form-group"> -->
-              <input type="text" onkeyup="suggest(this.value)">
-            <!-- </div> -->
+              <input id="search-box" type="text" class="ui-autocomplete-input" autocomplete="off">
           </form>
         </div>
-      </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3"><p>Suggestions: <span id="search_suggestions"></span></p></div>
       </div>
 
       <!-- Search by number of calories -->
@@ -91,7 +87,9 @@
                 <div class="card-block">
                   <h4 class="card-title">' . $item['name'] . '</h4>
                   <p class="card-text">' . $item['calories'] . ' calories  |  $' . $item['price'] . '</p>
-                  <p class="card-text"><a href="#" class="btn btn-primary" role="button">Order Now</a></p>
+                  <p class="card-text">
+                    <a href="config/cart_functions.php?addItem=' . $item['itemID'] . '" class="btn btn-primary" role="button">Order Now</a>
+                  </p>
                 </div>
               </div>';
             }
@@ -113,11 +111,22 @@
       include_once('includes/cartModal.php');
     ?>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
     <script>$("#nav-home").addClass("active");</script>
+    <script>
+      var jSuggestions = <?php include_once('config/suggest.php'); ?>;
+      $('#search-box').autocomplete({
+        maxResults: 5,
+        source: function(request, response) {
+        var results = $.ui.autocomplete.filter(jSuggestions, request.term);
+        response(results.slice(0, this.options.maxResults)); },
+        minLength: 2
+      });
+    </script>
 
   </body>
 </html>

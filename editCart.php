@@ -21,13 +21,12 @@
     <!-- Include the navigation bar -->
     <?php include_once('includes/nav.html');?>
     
-    <?php 
+    <?php
       $query1 = "SELECT * FROM cart c INNER JOIN item i ON i.itemID = c.itemID INNER JOIN restaurant r ON r.restaurantID = i.restaurantID WHERE c.cartID = 1";
-      $rows = db_select($query1);
+      $items = db_select($query1);
       $totalAmt = 0;
       $totalCal = 0;
       define("TAX", 0.0471);
-
     ?>
 
     <div class="container py-5">
@@ -41,12 +40,14 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach($rows as $row){ $totalAmt += $row['price']; $totalCal += $row['calories']; echo '
+        <?php foreach($items as $item){ $totalAmt += $item['price']; $totalCal += $item['calories']; echo '
           <tr class="lineitem">
-            <td><strong>' . $row['restaurantName'] .'</strong></td>
-            <td>' . $row['name'] .' (' . $row['calories'] . ')</td>
-            <td>$&nbsp;' . $row['price'] .'</td>
-            <td class="text-center"><i class="remove-btn fa fa-minus-circle hidden"></i></td>
+            <td><strong>' . $item['restaurantName'] .'</strong></td>
+            <td>' . $item['name'] .' (' . $item['calories'] . ')</td>
+            <td>$&nbsp;' . $item['price'] .'</td>
+            <td class="text-center">
+              <a href="config/cart_functions.php?delItem=' . $item['itemID'] .'"><i class="remove-btn fa fa-minus-circle hidden"></i></a>
+            </td>
           </tr>';
         }?>
         
