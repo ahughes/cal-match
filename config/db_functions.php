@@ -63,8 +63,7 @@ function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
 
-function redirect($url)
-{
+function redirect($url) {
     if (!headers_sent())
     {    
         header('Location: '.$url);
@@ -79,6 +78,19 @@ function redirect($url)
         echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
         echo '</noscript>'; exit;
     }
+}
+
+function salted($password) {
+    $salt1 = SALT_1;
+    $salt2 = SALT_2;
+    $token = hash('ripemd128', "$salt1$password$salt2");
+    return $token;
+}
+
+function sanitize($connection, $string) { return htmlentities(mysql_fix_string($connection, $string)); }
+function mysql_fix_string($connection, $string) {
+    if (get_magic_quotes_gpc()) $string = stripslashes($string);
+    return $connection->real_escape_string($string);
 }
 
 ?>

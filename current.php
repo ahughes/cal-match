@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['loggedIn'] = true;
+  // $_SESSION['loggedIn'] = true;
 ?>
 <!doctype html>
 <html>
@@ -43,8 +43,9 @@
       </div>
     </div>
 
-    <div class="container"> <!-- Search by item name -->
+    <div id="afterJumbo" class="container"> 
       <div class="row">
+        <!-- Search by item name -->
         <div class="col-md-6">
           <div class="col-12 text-center mb-1">Search all items:</div>
           <form class="col-12 justify-content-center">
@@ -56,6 +57,7 @@
             </div>
           </form>
         </div>
+        <!-- Search by total remaining calories -->
         <div class="col-md-6">
           <div class="col-12 text-center mb-1">Enter available calories:</div>
           <form class="col-12 justify-content-center" method="POST">
@@ -73,7 +75,7 @@
 
       <br><br>
 
-      <div id="availableItems" class="row">
+      <div class="row">
         <?php
           if(!isset($_SESSION['totalCals'])) {
             if(isset($_POST['cal_value'])) {
