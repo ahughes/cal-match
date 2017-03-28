@@ -8,19 +8,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="signUpForm">
+        <form id="signUpForm" method="POST" action="../config/user_functions.php">
           <div class="form-group">
             <div class="form-inline">
-              <input type="text" class="form-control col-lg-6" id="signUpFirst" placeholder="First Name">
-              <input type="text" class="form-control col-lg-6" id="signUpLast" placeholder="Last Name">
+              <input name="first" type="text" class="form-control col-lg-6" id="signUpFirst" placeholder="First Name">
+              <input name="last" type="text" class="form-control col-lg-6" id="signUpLast" placeholder="Last Name">
             </div>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" id="signUpEmail" placeholder="Email">
+            <input name="email" type="email" class="form-control" id="signUpEmail" placeholder="Email">
             <div class="form-control-feedback" hidden>Invalid email address.</div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="signUpPhone" placeholder="Telephone">
+            <input name="phone" type="text" class="form-control" id="signUpPhone" placeholder="Telephone">
+            <input name="action" type="text" value="add" hidden>
           </div>
           <fieldset>
             <div class="form-group float-right">
