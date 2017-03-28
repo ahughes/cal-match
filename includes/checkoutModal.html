@@ -1,3 +1,37 @@
+<?php
+
+$msg="";
+
+if(isset($_GET['msg']))
+{
+  $msg = $_GET['msg'];
+  echo '
+
+<!DOCTYPE HTML>
+<HEAD>
+        <script>
+          alert('.$msg.');
+        </script>
+</HEAD>
+<BODY>
+</BODY>
+
+</HTML>
+        ';
+}
+
+if(isset($_GET['msg'])){
+
+$query="DELETE FROM cart WHERE cartID = $_SESSION['cartID']";
+db_query($query);
+
+if($query != ""){
+  header("Location: current.php")
+}
+
+}
+?>
+
 <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -61,7 +95,7 @@
             </tr>
           </table>
         </form>
-        <div class="text-center"><a href="#" class="btn btn-success">Place Order</a></div>
+        <div class="text-center"><a href="checkoutModal.html?msg=Success" class="btn btn-success">Place Order</a></div>
       </div>
     </div>
   </div>
