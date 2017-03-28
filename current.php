@@ -46,7 +46,7 @@
     <div class="container"> <!-- Search by item name -->
       <div class="row">
         <div class="col-md-6">
-          <div class="col-12 text-center mb-1">Search available items:</div>
+          <div class="col-12 text-center mb-1">Search all items:</div>
           <form class="col-12 justify-content-center">
             <div class="form-group col-8 mx-auto justify-content-center">
               <input id="search-box" type="text" class="form-control col-12 ui-autocomplete-input" autocomplete="off">

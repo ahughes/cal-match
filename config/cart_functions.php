@@ -20,6 +20,7 @@ if(isset($_GET['addItem'])){
   }
   $conn->close();
   $_SESSION['itemsInCart'] += 1;
+  change_remaining_calories('down',$_GET['addItem']);
   redirect('../current.php');
   exit;
 }
@@ -37,10 +38,21 @@ if(isset($_GET['delItem'])){
   }
   $conn->close();
   $_SESSION['itemsInCart'] -= 1;
+  change_remaining_calories('up',$_GET['addItem']);
   redirect('../editCart.php');
   exit;
 }
 
-//COUNT ITEMS IN CART
+function change_remaining_calories($dir,$itemID) {
+  $query = "SELECT calories FROM item WHERE itemID = $itemID";
+  $rows = db_select($query);
+  foreach($rows as $row) {$lowerBy = $row['calories'];}
+  if($dir = 'down') {
+    $_SESSION['remaining'] -= $lowerBy;
+  } else {
+    $_SESSION['remaining'] += $lowerBy;
+  }
+  
+}
 
 ?>
