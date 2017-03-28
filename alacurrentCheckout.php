@@ -32,6 +32,7 @@
   <DIV>
     <FORM>
       <DIV>
+        Select Credit Card Type
       <SELECT>
         <OPTION VALUE='1'>VISA</OPTION>
         <OPTION VALUE='2'>AMERICAN EXPRESS</OPTION>
