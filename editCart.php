@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
   <?php include_once('config/db_functions.php'); ?>
@@ -22,7 +23,8 @@
     <?php include_once('includes/nav.html');?>
     
     <?php
-      $query1 = "SELECT * FROM cart c INNER JOIN item i ON i.itemID = c.itemID INNER JOIN restaurant r ON r.restaurantID = i.restaurantID WHERE c.cartID = 1";
+      if(isset($_SESSION['cartID'])) { $cartID = $_SESSION['cartID']; } else { redirect('../config/create_cart.php'); }
+      $query1 = "SELECT * FROM cart c INNER JOIN item i ON i.itemID = c.itemID INNER JOIN restaurant r ON r.restaurantID = i.restaurantID WHERE c.cartID = $cartID";
       $items = db_select($query1);
       $totalAmt = 0;
       $totalCal = 0;
@@ -40,16 +42,23 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach($items as $item){ $totalAmt += $item['price']; $totalCal += $item['calories']; echo '
-          <tr class="lineitem">
-            <td><strong>' . $item['restaurantName'] .'</strong></td>
-            <td>' . $item['name'] .' (' . $item['calories'] . ')</td>
-            <td>$&nbsp;' . $item['price'] .'</td>
-            <td class="text-center">
-              <a href="config/cart_functions.php?delItem=' . $item['itemID'] .'"><i class="remove-btn fa fa-minus-circle hidden"></i></a>
-            </td>
-          </tr>';
-        }?>
+        <?php
+          $_SESSION['itemsInCart'] = 0;
+          foreach($items as $item){
+            $totalAmt += $item['price'];
+            $totalCal += $item['calories'];
+            $_SESSION['itemsInCart'] += 1;
+            echo '
+            <tr class="lineitem">
+              <td><strong>' . $item['restaurantName'] .'</strong></td>
+              <td>' . $item['name'] .' (' . $item['calories'] . ')</td>
+              <td>$&nbsp;' . $item['price'] .'</td>
+              <td class="text-center">
+                <a href="config/cart_functions.php?delItem=' . $item['itemID'] .'"><i class="remove-btn fa fa-minus-circle hidden"></i></a>
+              </td>
+            </tr>';
+          }
+        ?>
         
           <tr class="table-border-top">
             <th scope="row" colspan="2">Subtotal</th>

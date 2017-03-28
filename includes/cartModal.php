@@ -1,8 +1,9 @@
 <?php 
+  $cartID = $_SESSION['cartID'];
   $query1 = "SELECT * FROM cart c 
             INNER JOIN item i ON i.itemID = c.itemID 
             INNER JOIN restaurant r ON r.restaurantID = i.restaurantID 
-            WHERE c.cartID = 1";
+            WHERE c.cartID = $cartID";
   $rows = db_select($query1);
   $totalAmt = 0;
   $totalCal = 0;

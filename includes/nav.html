@@ -36,10 +36,13 @@
       <a href="#" class="btn btn-outline-success my-2 my-sm-0" id="toggle-login">Sign&nbsp;In</a>
     </form>
 
-    <!-- The following form will only appear when the user is signed in -->
     <div id="nav-sign-out" class="my-2 my-lg-0" hidden>
       <a href="#" href="#" data-toggle="modal" data-target="#cartModal" class="btn btn-outline-secondary mr-2 my-2 my-sm-0">
-        <i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-default">2</span>
+        <i class="fa fa-shopping-cart"></i>
+        &nbsp;Cart #<?php echo $_SESSION['cartID'];?>&nbsp;
+        <span id="cart-badge" class="badge badge-default">
+          <?php if(isset($_SESSION['itemsInCart'])){ echo $_SESSION['itemsInCart']; } else { echo 0; } ?>
+        </span>
       </a>
       <a href="#" class="btn btn-outline-info mr-2 my-2 my-sm-0">My Account</a>
       <!-- <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign&nbsp;Out</button> -->

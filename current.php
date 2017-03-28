@@ -1,6 +1,10 @@
+<?php
+  session_start();
+  $_SESSION['loggedIn'] = true;
+?>
 <!doctype html>
 <html>
-  <?php require_once('config/db_functions.php'); ?>
+  <?php require_once('config/db_functions.php'); if(!isset($_SESSION['cartID'])) {redirect('../config/create_cart.php');}?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
