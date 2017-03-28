@@ -53,7 +53,7 @@ function update_user() {
 }
 
 function delete_user($userID) {
-	$query = "DELETE FROM user WHERE userID = $userID";
+	$query = "DELETE FROM user WHERE userID = '$userID'";
 	db_query($query);
 	alert('User deleted!');
 	destroy_session();
