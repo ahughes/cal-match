@@ -11,3 +11,10 @@ $(".lineitem").hover(function() {
 $(".remove-btn").hover(function() {
 	$(this).parents("tr").toggleClass("table-danger");
 });
+
+// Datepicker
+$( "#datepicker" ).datepicker({
+	changeMonth: true,
+    changeYear: true,
+    minDate: 0
+});

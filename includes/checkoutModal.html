@@ -1,0 +1,68 @@
+<div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <td><?php echo $_SESSION['firstName'] . '&nbsp;' . $_SESSION['lastName']; ?></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><?php echo $_SESSION['email']; ?></td>
+          </tr>
+          <tr class="table-active">
+            <th>Total Amount</th>
+            <td><?php echo '$ ' . money_format('%i',($totalAmt * TAX)+$totalAmt); ?></td>
+          </tr>
+        </table>
+        <form>
+          <table class="table">
+            <thead><tr ><th colspan="2" class="text-center">Payment information:</th></tr></thead>
+            <tr>
+              <th>Credit Card Type</th>
+              <td>
+                <select>
+                  <option value='1'>VISA</option>
+                  <option value='2'>AMERICAN EXPRESS</option>
+                  <option value='3'>MASTERCARD</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Credit Card Number</th>
+              <td>
+                <input type="text">
+              </td>
+            </tr>
+            <tr>
+              <th>Expiration Date</th>
+              <td>
+                <input id="datepicker" type="text">
+              </td>
+            </tr>
+            <tr>
+              <th>Security Code</th>
+              <td>
+                <input type="text">
+              </td>
+            </tr>
+            <tr>
+              <th>Billing Zipcode</th>
+              <td>
+                <input type="text">
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="text-center"><a href="#" class="btn btn-success">Place Order</a></div>
+      </div>
+    </div>
+  </div>
+</div>

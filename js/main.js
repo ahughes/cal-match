@@ -42,14 +42,33 @@ function validateEmail(email) {
 inputs.change(function() {
   if (validateInputs(inputs) && validateEmail($("#inputEmail").val())) {
     $("#validSend").removeAttr("disabled");
-	$("#reqMsg").attr("hidden", "hidden");
+    $("#reqMsg").attr("hidden", "hidden");
   }
   if (!validateEmail($("#inputEmail").val())) {
-	  $(".form-control-feedback").removeAttr("hidden");
+	  $("#inputEmailFeedback").removeAttr("hidden");
 	  $("#emailInput").addClass("has-danger");
   }
   if (validateEmail($("#inputEmail").val())) {
-	  $(".form-control-feedback").attr("hidden", "hidden");
+	  $("#inputEmailFeedback").attr("hidden", "hidden");
 	  $("#emailInput").removeClass("has-danger");
   }
+});
+
+var signUpInputs = $("#signUpEmail");
+signUpInputs.change(function() {
+  if (!validateEmail($("#signUpEmail").val())) {
+    $("#signUpEmailFeedback").removeAttr("hidden");
+    $("#signUpEmail").parent().addClass("has-danger");
+  }
+  if (validateEmail($("#signUpEmail").val())) {
+    $("#signUpEmailFeedback").attr("hidden", "hidden");
+    $("#signUpEmail").parent().removeClass("has-danger");
+  }
+});
+
+//Checkout modal js
+$( "#datepicker" ).datepicker({
+  changeMonth: true,
+    changeYear: true,
+    minDate: 0
 });

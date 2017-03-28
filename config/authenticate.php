@@ -24,6 +24,8 @@
       session_start();
       $_SESSION['email'] = $user['email'];
       $_SESSION['firstName'] = $user['firstName'];
+      $_SESSION['lastName'] = $user['lastName'];
+      $_SESSION['userID'] = $user['userID'];
       $_SESSION['loggedIn'] = true;
       alert('Welcome, ' . $_SESSION['firstName'] . ', you have successfully logged in.');
     } else {

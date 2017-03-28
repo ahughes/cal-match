@@ -22,12 +22,15 @@ if(isset($_REQUEST['action'])) {
 }
 
 function create_user() {
+	if(!isset($_REQUEST['first']) || !isset($_REQUEST['last']) || !isset($_REQUEST['email']) || !isset($_REQUEST['password'])) {
+		alert('Please fill all required fields before submitting.'); redirect('../current.php');
+	}
 	$conn = db_connect(); //connect to db
 
-	if($_REQUEST['password'] == $_REQUEST['confirm']) { $token = salted($_REQUEST['password']); }
+	if($_REQUEST['password'] == $_REQUEST['confirm']) {
+		$token = salted($_REQUEST['password']);
+	} else { alert('Passwords do not match, please try again.'); redirect('../current.php'); }
     $stmt = $conn->prepare("INSERT INTO `user` (`userID`, `locationID`, `firstName`, `lastName`, `email`, `phone`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)");
-    if($conn->error) die('Pre-execution error: ' . $conn->error);
-    alert('Token: ' . $token);
     $stmt->bind_param('isssis', $_REQUEST['loc'], $_REQUEST['first'], $_REQUEST['last'], $_REQUEST['email'], $_REQUEST['phone'], $token);
     $stmt->execute();
     if($conn->error) die('Error: ' . $conn->error);

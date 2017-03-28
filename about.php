@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
   <?php include_once('config/db_functions.php'); ?>
