@@ -1,5 +1,3 @@
-<!-- This is out of date and has been replaced with editCart.php and the cart modal. The logic is in config/cart_functions.php -->
-
 <?php
 
 include_once('config/db_functions.php');
@@ -198,9 +196,9 @@ echo'
 </TABLE>
 <BR/>
 <?php
-$totalAmt = str_replace(".", "%2E", $totalAmt);
 echo'<A HREF="alacurrent.php?cartID='.$cartID.'"><INPUT TYPE="BUTTON" VALUE="ADD MORE ITEMS"></A>';
-echo'<A HREF="alacurrentCheckout.php?cartID='.$cartID.'&totalAmt='.$totalAmt.'"><INPUT TYPE="BUTTON" VALUE="CHECKOUT"></A>';
+echo'<A HREF="alacurrentCheckout.php?cartID='.$cartID.'&totalAmt='.$totalAmt.'"><INPUT TYPE="BUTTON" VALUE="ADD MORE ITEMS"></A>';
 ?>
+<INPUT TYPE="BUTTON" VALUE="CHECKOUT">
 </BODY>
 </HTML>
