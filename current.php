@@ -43,46 +43,56 @@
       </div>
     </div>
 
-    <div class="container">
-      <!-- Search by item name -->
-      <div class="row justify-content-sm-center mx-auto">
-        <div class="col-12 mx-auto mb-3">Search available items:</div>
-      </div>
-      <div class="row justify-content-sm-center mx-auto">
-        <div class="col-12 mx-auto">
-          <form class="form-inline" method="POST">
-              <input id="search-box" type="text" class="ui-autocomplete-input" autocomplete="off">
-          </form>
-        </div>
-      </div>
-
-      <!-- Search by number of calories -->
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto mb-3">Enter available calories:</div>
-      </div>
-      <div class="row justify-content-sm-center">
-        <div class="col-12 col-xs-auto">
-          <form class="form-inline" method="POST">
-            <div class="form-group">
-              <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories">
-              <span class="input-group-addon">calories</span>
+    <div class="container"> <!-- Search by item name -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-12 text-center mb-1">Search available items:</div>
+          <form class="col-12 justify-content-center">
+            <div class="form-group col-8 mx-auto justify-content-center">
+              <input id="search-box" type="text" class="form-control col-12 ui-autocomplete-input" autocomplete="off">
             </div>
-            <button type="submit" class="btn btn-primary mx-3" id="cal_val_submit">Submit</button>
+            <div class="justify-content-center text-center">
+              <a class="btn btn-outline-success text-center" id="addButton">Add to cart</a>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="col-12 text-center mb-1">Enter available calories:</div>
+          <form class="col-12 justify-content-center" method="POST">
+            <div class="col-10 form-group form-inline mx-auto">
+              <input name="cal_value" type="text" class="form-control" placeholder="Example: 500" aria-describedby="Available Calories" <?php if(isset($_SESSION['totalCals'])) { echo "value=" . $_SESSION['totalCals']; } ?>>
+              <span class="input-group-addon">calories</span>
+              <button type="submit" class="btn btn-primary mx-3" id="cal_val_submit">Submit</button>
+            </div>
           </form>
         </div>
       </div>
+    </div>
+
+    <div class="container">
 
       <br><br>
 
-      <div class="row">
+      <div id="availableItems" class="row">
         <?php
-          if(isset($_POST['cal_value'])) {
-            $cal_value = $_POST['cal_value'];
-            $remaining = $cal_value - 10;
+          if(!isset($_SESSION['totalCals'])) {
+            if(isset($_POST['cal_value'])) {
+              $_SESSION['totalCals'] = $_POST['cal_value'];
+            }
+          }
+            
+          if(!isset($_SESSION['remaining'])) {
+            if(isset($_SESSION['totalCals'])) {
+              $_SESSION['remaining'] = $_SESSION['totalCals'];
+            }
+          }
+          
+          if(isset($_SESSION['remaining'])) {
+            $cal_value = $_SESSION['remaining'];
             $items = items_under_cal_value($cal_value);
             echo '
               <div class="progress" style="width: 100vw;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ' . ($remaining/$cal_value)*100 . '%">' . $remaining .' calories remaining</div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ' . ($_SESSION['remaining']/$_SESSION['totalCals'])*100 . '%">' . $_SESSION['remaining'] .' calories remaining</div>
               </div><br><br>';
             echo '<div class="card-columns">';
             foreach($items as $item) { echo '
@@ -122,12 +132,22 @@
     <script src="js/main.js"></script>
     <script>$("#nav-home").addClass("active");</script>
     <script>
+      $("#addButton").hide();
       var jSuggestions = <?php include_once('config/suggest.php'); ?>;
       $('#search-box').autocomplete({
         maxResults: 5,
         source: function(request, response) {
         var results = $.ui.autocomplete.filter(jSuggestions, request.term);
         response(results.slice(0, this.options.maxResults)); },
+        select: function(event, ui) {
+          // prevent autocomplete from updating the textbox
+          event.preventDefault();
+          // manually update the textbox and hidden field
+          $(this).val(ui.item.label);
+          $("#addButton").show();
+          var link = "../config/cart_functions.php?addItem=" + ui.item.value;
+          $("#addButton").attr("href", link);
+        },
         minLength: 2
       });
     </script>

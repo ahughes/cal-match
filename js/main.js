@@ -1,12 +1,12 @@
 //Simulate whether user is logged in or not
-$("#toggle-login").click(function() {
-  $("#nav-sign-in").attr("hidden", "hidden");
-  $("#nav-sign-out").removeAttr("hidden");
-});
-$("#toggle-logout").click(function() {
-  $("#nav-sign-out").attr("hidden", "hidden");
-  $("#nav-sign-in").removeAttr("hidden");
-});
+// $("#toggle-login").click(function() {
+//   $("#nav-sign-in").attr("hidden", "hidden");
+//   $("#nav-sign-out").removeAttr("hidden");
+// });
+// $("#toggle-logout").click(function() {
+//   $("#nav-sign-out").attr("hidden", "hidden");
+//   $("#nav-sign-in").removeAttr("hidden");
+// });
 
 // 'Enter available calories' validation
 $(document).ready(function() {

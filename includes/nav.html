@@ -27,26 +27,26 @@
         <a class="nav-link" href="#" data-toggle="modal" data-target="#contactUs">Contact&nbsp;Us</a>
       </li>
     </ul>
-    
-    <!-- This form will appear until the user is signed in -->
-    <form id="nav-sign-in" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Email">
-      <input class="form-control mr-sm-2" type="password" placeholder="Password">
-      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button> -->
-      <a href="#" class="btn btn-outline-success my-2 my-sm-0" id="toggle-login">Sign&nbsp;In</a>
-    </form>
 
-    <div id="nav-sign-out" class="my-2 my-lg-0" hidden>
+    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    echo '<div id="nav-sign-out" class="my-2 my-lg-0">
       <a href="#" href="#" data-toggle="modal" data-target="#cartModal" class="btn btn-outline-secondary mr-2 my-2 my-sm-0">
         <i class="fa fa-shopping-cart"></i>
-        &nbsp;Cart #<?php echo $_SESSION['cartID'];?>&nbsp;
-        <span id="cart-badge" class="badge badge-default">
-          <?php if(isset($_SESSION['itemsInCart'])){ echo $_SESSION['itemsInCart']; } else { echo 0; } ?>
+        &nbsp;Cart&nbsp;
+        <span id="cart-badge" class="badge badge-default">';
+          if(isset($_SESSION['itemsInCart'])){ echo $_SESSION['itemsInCart']; } else { echo 0; };
+          echo '
         </span>
       </a>
       <a href="#" class="btn btn-outline-info mr-2 my-2 my-sm-0">My Account</a>
-      <!-- <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign&nbsp;Out</button> -->
       <a href="#" class="btn btn-outline-danger my-2 my-sm-0" id="toggle-logout">Sign&nbsp;Out</a>
-    </div>
+    </div>';} else {
+    echo '
+    <form id="nav-sign-in" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Email">
+      <input class="form-control mr-sm-2" type="password" placeholder="Password">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>
+    </form>
+    ';} ?>
   </div>
 </nav>

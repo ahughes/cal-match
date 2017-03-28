@@ -9,9 +9,8 @@ if(!isset($_SESSION['cartID'])) {
   $query = "SELECT MAX(cartID) AS lastCart FROM cart";
 
   $rows = db_select($query);
-  foreach($rows as $row){ alert('MAX cart: ' . $row['lastCart']); $newCartID = $row['lastCart'] + 1; }
+  foreach($rows as $row){ $newCartID = $row['lastCart'] + 1; }
   $_SESSION['cartID'] = $newCartID;
-  alert('Cart ID: ' . $_SESSION['cartID']);
 }
 
 if(isset($_REQUEST['r'])) {
