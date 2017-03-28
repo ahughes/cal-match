@@ -6,6 +6,9 @@ require_once('../config/db_functions.php');
 
 //CHECK FOR CART ID
 if(!isset($_SESSION['cartID'])) { redirect('../config/create_cart.php'); }
+if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'deleteCart') {
+  delete_cart($_SESSION['cartID']);
+}
 
 //ADD ITEM
 if(isset($_GET['addItem'])){
@@ -53,6 +56,13 @@ function change_remaining_calories($dir,$itemID) {
   if($dir == 'up') {
     $_SESSION['remaining'] += $calories;
   }
+}
+
+function delete_cart($cart) {
+  $query = "DELETE FROM cart WHERE cartID = $cart";
+  db_query($query);
+  alert('Order successfully submitted');
+  redirect('../current.php');
 }
 
 ?>

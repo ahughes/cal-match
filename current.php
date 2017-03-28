@@ -126,6 +126,8 @@
       include_once('includes/signUpModal.html');
       include_once('includes/cartModal.php');
       include_once('includes/checkoutModal.html');
+      include_once('includes/updateAccount.html');
+      include_once('includes/updatePassword.html');
     ?>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
