@@ -36,8 +36,8 @@ function create_user() {
 	if($_REQUEST['password'] == $_REQUEST['confirm']) {
 		$token = salted($_REQUEST['password']);
 	} else { alert('Passwords do not match, please try again.'); redirect('../current.php'); }
-    $stmt = $conn->prepare("INSERT INTO `user` (`userID`, `locationID`, `firstName`, `lastName`, `email`, `phone`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param('isssis', $_REQUEST['loc'], $_REQUEST['first'], $_REQUEST['last'], $_REQUEST['email'], $_REQUEST['phone'], $token);
+    $stmt = $conn->prepare("INSERT INTO `user` (`userID`, `firstName`, `lastName`, `email`, `phone`, `password`) VALUES (NULL, ?, ?, ?, ?, ?)");
+    $stmt->bind_param('issis', $_REQUEST['first'], $_REQUEST['last'], $_REQUEST['email'], $_REQUEST['phone'], $token);
     $stmt->execute();
     if($conn->error) die('Error: ' . $conn->error);
     $conn->close();

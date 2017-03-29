@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2017 at 10:00 PM
+-- Generation Time: Mar 29, 2017 at 10:49 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
--- PHP Version: 7.0.13-0ubuntu0.16.04.1
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,19 +28,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `cartID` int(7) NOT NULL,
-  `itemID` int(7) NOT NULL,
-  `userID` int(7) NOT NULL,
-  `paymentID` int(7) NOT NULL,
-  `restaurantID` int(7) NOT NULL,
-  `locationID` int(7) NOT NULL
+  `itemID` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cartID`, `itemID`, `userID`, `paymentID`, `restaurantID`, `locationID`) VALUES
-(1, 1, 1, 1, 1, 1);
+INSERT INTO `cart` (`cartID`, `itemID`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +67,7 @@ INSERT INTO `creditcard` (`creditcardID`, `name`) VALUES
 CREATE TABLE `item` (
   `itemID` int(7) NOT NULL,
   `restaurantID` int(7) NOT NULL,
-  `name` varchar(200) NOT NULL,
+  `name` varchar(1000) NOT NULL,
   `calories` int(7) NOT NULL,
   `price` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -667,24 +663,6 @@ INSERT INTO `item` (`itemID`, `restaurantID`, `name`, `calories`, `price`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `location`
---
-
-CREATE TABLE `location` (
-  `locationID` int(7) NOT NULL,
-  `zipcode` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `location`
---
-
-INSERT INTO `location` (`locationID`, `zipcode`) VALUES
-(1, '84120');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `payment`
 --
 
@@ -693,17 +671,10 @@ CREATE TABLE `payment` (
   `creditcardID` int(7) NOT NULL,
   `userID` int(7) NOT NULL,
   `cardNum` varchar(16) NOT NULL,
-  `cardExp` varchar(5) NOT NULL,
+  `cardExp` varchar(50) NOT NULL,
   `cardCode` varchar(4) NOT NULL,
   `locationID` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`paymentID`, `creditcardID`, `userID`, `cardNum`, `cardExp`, `cardCode`, `locationID`) VALUES
-(1, 1, 1, '4891529075544322', '10/17', '243', 1);
 
 -- --------------------------------------------------------
 
@@ -713,14 +684,14 @@ INSERT INTO `payment` (`paymentID`, `creditcardID`, `userID`, `cardNum`, `cardEx
 
 CREATE TABLE `restaurant` (
   `restaurantID` int(7) NOT NULL,
-  `name` varchar(200) NOT NULL
+  `restaurantName` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `restaurant`
 --
 
-INSERT INTO `restaurant` (`restaurantID`, `name`) VALUES
+INSERT INTO `restaurant` (`restaurantID`, `restaurantName`) VALUES
 (1, 'McDonald\'s'),
 (2, 'Wendy\'s'),
 (3, 'Burger King');
@@ -753,19 +724,12 @@ INSERT INTO `role` (`roleID`, `type`) VALUES
 
 CREATE TABLE `user` (
   `userID` int(7) NOT NULL,
-  `locationID` int(7) NOT NULL,
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phone` varchar(10) NOT NULL
+  `phone` varchar(10) DEFAULT NULL,
+  `password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userID`, `locationID`, `firstName`, `lastName`, `email`, `phone`) VALUES
-(1, 1, 'Ala', 'Brown', 'alasii@hotmail.com', '8014289648');
 
 -- --------------------------------------------------------
 
@@ -783,22 +747,15 @@ CREATE TABLE `userrole` (
 --
 
 INSERT INTO `userrole` (`userID`, `roleID`) VALUES
-(1, 1);
+(1, 1),
+(2, 2),
+(3, 3),
+(2, 2),
+(3, 3);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cartID`),
-  ADD KEY `itemID` (`itemID`),
-  ADD KEY `userID` (`userID`),
-  ADD KEY `paymentID` (`paymentID`),
-  ADD KEY `restaurantID` (`restaurantID`),
-  ADD KEY `locationID` (`locationID`);
 
 --
 -- Indexes for table `creditcard`
@@ -813,12 +770,6 @@ ALTER TABLE `item`
   ADD PRIMARY KEY (`itemID`),
   ADD KEY `restaurantID` (`restaurantID`),
   ADD KEY `restaurantID_2` (`restaurantID`);
-
---
--- Indexes for table `location`
---
-ALTER TABLE `location`
-  ADD PRIMARY KEY (`locationID`);
 
 --
 -- Indexes for table `payment`
@@ -845,8 +796,7 @@ ALTER TABLE `role`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`),
-  ADD KEY `locationID` (`locationID`);
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- Indexes for table `userrole`
@@ -855,6 +805,15 @@ ALTER TABLE `userrole`
   ADD KEY `userID` (`userID`),
   ADD KEY `roleID` (`roleID`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
