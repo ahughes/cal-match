@@ -22,8 +22,10 @@
             <div class="form-control-feedback" id="signUpEmailFeedback" hidden>Invalid email address.</div>
           </div>
           <div class="form-group">
-            <?php echo '
-            <input name="phone" type="text" class="form-control" id="signUpPhone" value="' . $_SESSION['phone'] . '">'; ?>
+            <?php if($_SESSION['phone'] != '' && $_SESSION['phone'] != 0) { echo '
+            <input name="phone" type="text" class="form-control" id="signUpPhone" value="' . $_SESSION['phone'] . '">';
+            } else { echo '
+            <input name="phone" type="text" class="form-control" id="signUpPhone" placeholder="Phone">';} ?>
             <input name="action" type="text" value="update" hidden>
           </div>
           <fieldset>
@@ -36,7 +38,7 @@
         </form>
         <hr>
         <div class="text-center">
-          <a href="#" data-toggle="modal" data-target="#updatePassword" class="btn btn-outline-warning">Update Password</a>
+          <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#updatePassword" class="btn btn-outline-warning">Update Password</a>
         </div>
       </div>
     </div>

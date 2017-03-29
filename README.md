@@ -7,6 +7,7 @@ IS 4460 Group Project - Group 19
 * ['Coming Soon' Page JS/CSS](http://blacktie.co/2014/03/counter-coming-soon-page/) - [Carlos Alvarez](http://alvarez.is)
 * [Bootstrap](http://www.getbootstrap.com)
 * [Backstrech](https://github.com/srobbin/jquery-backstretch)
+* [jquery-confirm](https://github.com/craftpip/jquery-confirm)
 
 ## Authors
 

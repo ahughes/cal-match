@@ -23,7 +23,7 @@ if(isset($_GET['addItem'])){
   }
   $conn->close();
   $_SESSION['itemsInCart'] += 1;
-  change_remaining_calories('down',$_GET['addItem']);
+  if(isset($_SESSION['remaining'])) change_remaining_calories('down',$_GET['addItem']);
   redirect('../current.php#afterJumbo');
   exit;
 }
@@ -41,7 +41,7 @@ if(isset($_GET['delItem'])){
   }
   $conn->close();
   $_SESSION['itemsInCart'] -= 1;
-  change_remaining_calories('up',$_GET['delItem']);
+  if(isset($_SESSION['remaining'])) change_remaining_calories('up',$_GET['delItem']);
   redirect('../editCart.php');
   exit;
 }
@@ -62,6 +62,7 @@ function delete_cart($cart) {
   $query = "DELETE FROM cart WHERE cartID = $cart";
   db_query($query);
   alert('Order successfully submitted');
+  $_SESSION['itemsInCart'] = 0;
   redirect('../current.php');
 }
 

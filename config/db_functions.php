@@ -60,7 +60,7 @@ function items_under_cal_value($cals) {
 }
 
 function alert($msg) {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
+    $_SESSION['alert'] = $msg;
 }
 
 function redirect($url) {

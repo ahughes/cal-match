@@ -20,6 +20,9 @@ if(isset($_REQUEST['action'])) {
 			break;
 		case logout:
 			destroy_session();
+			session_start();
+			alert('You have been successfully logged out. Come back soon!');
+			redirect('../current.php');
 			break;
 	}
 }
@@ -48,6 +51,10 @@ function update_user() {
     $stmt->execute();
     if($conn->error) die('Error: ' . $conn->error);
     $conn->close();
+    $_SESSION['firstName'] = $_REQUEST['first'];
+    $_SESSION['lastName'] = $_REQUEST['last'];
+    $_SESSION['phone'] = $_REQUEST['phone'];
+    $_SESSION['email'] = $_REQUEST['email'];
     alert('Successfully updated profile.');
     redirect('../current.php');
 }
@@ -55,8 +62,10 @@ function update_user() {
 function delete_user($userID) {
 	$query = "DELETE FROM user WHERE userID = '$userID'";
 	db_query($query);
-	alert('User deleted!');
 	destroy_session();
+	session_start();
+	alert('User deleted!');
+	redirect('../current.php');
 }
 
 function update_password() {
@@ -70,7 +79,8 @@ function update_password() {
     $stmt->execute();
     if($conn->error) die('Error: ' . $conn->error);
     $conn->close();
-    alert('Successfully updated password.');
+    destroy_session(); session_start();
+    alert('Successfully updated password. Please log in again.');
     redirect('../current.php');
 }
 
@@ -78,9 +88,6 @@ function destroy_session() {
     session_start();
     $_SESSION = array();
     session_destroy();
-    alert('You are logged out.');
-    redirect('../current.php');
-    exit;
 }
 
 ?>

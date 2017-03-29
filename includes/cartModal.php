@@ -58,7 +58,7 @@
           <div class="text-center">
             <a href="#" class="mx-2 btn btn-outline-info" data-dismiss="modal" aria-label="Close">Add more items</a>
             <a href="editCart.php" class="mx-2 btn btn-outline-warning">Edit Cart</a>
-            <a href="#" class="mx-2 btn btn-outline-success" data-toggle="modal" data-target="#checkout">Checkout</a>
+            <a href="#" data-dismiss="modal" class="mx-2 btn btn-outline-success" data-toggle="modal" data-target="#checkout">Checkout</a>
           </div>
   
           <script>
