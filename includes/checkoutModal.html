@@ -11,11 +11,11 @@
         <table class="table">
           <tr>
             <th>Name</th>
-            <td><?php echo $_SESSION['firstName'] . '&nbsp;' . $_SESSION['lastName']; ?></td>
+            <td><?php if(isset($_SESSION['firstName'])) echo $_SESSION['firstName'] . '&nbsp;' . $_SESSION['lastName']; ?></td>
           </tr>
           <tr>
             <th>Email</th>
-            <td><?php echo $_SESSION['email']; ?></td>
+            <td><?php if(isset($_SESSION['email'])) echo $_SESSION['email']; ?></td>
           </tr>
           <tr class="table-active">
             <th>Total Amount</th>

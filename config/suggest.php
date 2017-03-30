@@ -9,7 +9,7 @@
 
     $results = array(); //Create array to store results
     while ($each = mysqli_fetch_assoc($result)) {
-        $results[] = array(label => $each['name'], value => $each['itemID']);
+        $results[] = array('label' => $each['name'], 'value' => $each['itemID']);
     }
     $result->free();
     $conn->close();

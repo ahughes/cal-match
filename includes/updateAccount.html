@@ -11,18 +11,18 @@
         <form id="updateForm" method="POST" action="../config/user_functions.php">
           <div class="form-group">
             <div class="form-inline">
-              <?php echo '
+              <?php if(isset($_SESSION['firstName'])) echo '
               <input name="first" type="text" class="form-control col-lg-6" id="signUpFirst" value="' . $_SESSION['firstName'] . '">
               <input name="last" type="text" class="form-control col-lg-6" id="signUpLast" value="' . $_SESSION['lastName'] . '">'; ?>
             </div>
           </div>
           <div class="form-group">
-            <?php echo '
+            <?php if(isset($_SESSION['firstName'])) echo '
             <input name="email" type="email" class="form-control" id="signUpEmail" value="' . $_SESSION['email'] . '">'; ?>
             <div class="form-control-feedback" id="signUpEmailFeedback" hidden>Invalid email address.</div>
           </div>
           <div class="form-group">
-            <?php if($_SESSION['phone'] != '' && $_SESSION['phone'] != 0) { echo '
+            <?php if(isset($_SESSION['email']) && $_SESSION['phone'] != '' && $_SESSION['phone'] != 0) { echo '
             <input name="phone" type="text" class="form-control" id="signUpPhone" value="' . $_SESSION['phone'] . '">';
             } else { echo '
             <input name="phone" type="text" class="form-control" id="signUpPhone" placeholder="Phone">';} ?>
