@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li id="nav-home" class="nav-item">
-        <a class="nav-link" href="../current.php">Home&nbsp;<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.php">Home&nbsp;<span class="sr-only">(current)</span></a>
       </li>
       <li id="nav-about" class="nav-item">
         <a class="nav-link" href="../about.php">About</a>
@@ -40,10 +40,10 @@
         </span>
       </a>
       <a href="#" data-toggle="modal" data-target="#updateAccount" class="btn btn-outline-info mr-2 my-2 my-sm-0">My Account</a>
-      <a href="../config/user_functions?action=logout" class="btn btn-outline-danger my-2 my-sm-0" id="toggle-logout">Sign&nbsp;Out</a>
+      <a href="../config/user_functions.php?action=logout" class="btn btn-outline-danger my-2 my-sm-0" id="toggle-logout">Sign&nbsp;Out</a>
     </div>';} else {
     echo '
-    <form id="nav-sign-in" class="form-inline my-2 my-lg-0" method="POST" action="../config/authenticate.php">
+    <form id="nav-sign-in" class="form-inline my-2 my-lg-0" method="POST" action="../config/user_functions.php?action=authenticate">
       <input name="email" class="form-control mr-sm-2" type="text" placeholder="Email">
       <input name="password" class="form-control mr-sm-2" type="password" placeholder="Password">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign&nbsp;In</button>

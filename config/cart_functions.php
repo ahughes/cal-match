@@ -4,11 +4,8 @@ session_start();
 //Credentials for connection
 require_once('../config/db_functions.php');
 
-//CHECK FOR CART ID
-if(!isset($_SESSION['cartID'])) { redirect('../config/create_cart.php'); }
-if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'deleteCart') {
-  delete_cart($_SESSION['cartID']);
-}
+if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'create') { create_cart(); }
+if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'deleteCart') { delete_cart($_SESSION['cartID']); }
 
 //ADD ITEM
 if(isset($_GET['addItem'])){
@@ -24,7 +21,7 @@ if(isset($_GET['addItem'])){
   $conn->close();
   $_SESSION['itemsInCart'] += 1;
   if(isset($_SESSION['remaining'])) change_remaining_calories('down',$_GET['addItem']);
-  redirect('../current.php#afterJumbo');
+  redirect('../index.php#afterJumbo');
   exit;
 }
 
@@ -58,12 +55,27 @@ function change_remaining_calories($dir,$itemID) {
   }
 }
 
+function create_cart() {
+  if(!isset($_SESSION['cartID'])) {
+    $query = "SELECT MAX(cartID) AS lastCart FROM cart";
+
+    $rows = db_select($query);
+    foreach($rows as $row){ $newCartID = $row['lastCart'] + 1; }
+    $_SESSION['cartID'] = $newCartID;
+  }
+
+  if(isset($_REQUEST['r'])) {
+    if($_REQUEST['r'] == 'editCart') redirect('../editCart.php');
+    if($_REQUEST['r'] == 'home') redirect('../index.php');
+  } else {redirect('../index.php');}
+}
+
 function delete_cart($cart) {
   $query = "DELETE FROM cart WHERE cartID = $cart";
   db_query($query);
   alert('Order successfully submitted');
   $_SESSION['itemsInCart'] = 0;
-  redirect('../current.php');
+  redirect('../index.php');
 }
 
 ?>

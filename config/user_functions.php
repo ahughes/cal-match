@@ -9,6 +9,9 @@ if(isset($_REQUEST['action'])) {
 		case add:
 			create_user();
 			break;
+		case authenticate:
+			authenticate();
+			break;
 		case update:
 			update_user();
 			break;
@@ -22,26 +25,64 @@ if(isset($_REQUEST['action'])) {
 			destroy_session();
 			session_start();
 			alert('You have been successfully logged out. Come back soon!');
-			redirect('../current.php');
+			redirect('../index.php');
 			break;
 	}
 }
 
 function create_user() {
 	if(!isset($_REQUEST['first']) || !isset($_REQUEST['last']) || !isset($_REQUEST['email']) || !isset($_REQUEST['password'])) {
-		alert('Please fill all required fields before submitting.'); redirect('../current.php');
+		alert('Please fill all required fields before submitting.'); redirect('../index.php');
 	}
 	$conn = db_connect(); //connect to db
 
 	if($_REQUEST['password'] == $_REQUEST['confirm']) {
 		$token = salted($_REQUEST['password']);
-	} else { alert('Passwords do not match, please try again.'); redirect('../current.php'); }
+	} else { alert('Passwords do not match, please try again.'); redirect('../index.php'); }
     $stmt = $conn->prepare("INSERT INTO `user` (`userID`, `firstName`, `lastName`, `email`, `phone`, `password`) VALUES (NULL, ?, ?, ?, ?, ?)");
     $stmt->bind_param('sssis', $_REQUEST['first'], $_REQUEST['last'], $_REQUEST['email'], $_REQUEST['phone'], $token);
     $stmt->execute();
     if($conn->error) die('Error: ' . $conn->error);
     $conn->close();
-    redirect('../current.php');
+    redirect('../index.php');
+}
+
+function authenticate() {
+	require_once('../config/db_functions.php');
+
+	if(isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
+		$conn = db_connect();
+		$email = sanitize($conn, $_REQUEST['email']);
+		$token = salted(sanitize($conn, $_REQUEST['password']));
+	} else { $conn->close(); redirect('../index.php'); exit; }
+
+	$stmt = $conn->prepare("SELECT * FROM user WHERE email=?");
+	if($conn->error) die("Pre-bind error: " . $conn->error);
+	$stmt->bind_param('s', $email);
+	$stmt->execute();
+	$result = $stmt->get_result();
+
+	if($result === false) { return false; }
+	$rows = array();
+	while ($row = mysqli_fetch_assoc($result)) { $rows[] = $row; }
+	$result->free();
+	$conn->close();
+
+	foreach($rows as $user) { 
+		if($token == $user['password']) {
+		  session_start();
+		  $_SESSION['email'] = $user['email'];
+		  $_SESSION['firstName'] = $user['firstName'];
+		  $_SESSION['lastName'] = $user['lastName'];
+		  $_SESSION['phone'] = $user['phone'];
+		  $_SESSION['userID'] = $user['userID'];
+		  $_SESSION['loggedIn'] = true;
+		  alert('Welcome, ' . $_SESSION['firstName'] . ', you have successfully logged in.');
+		} else {
+		  alert('Incorrect email address or password. Please try again.');
+		}
+	}
+	redirect('../index.php');
 }
 
 function update_user() {
@@ -56,7 +97,7 @@ function update_user() {
     $_SESSION['phone'] = $_REQUEST['phone'];
     $_SESSION['email'] = $_REQUEST['email'];
     alert('Successfully updated profile.');
-    redirect('../current.php');
+    redirect('../index.php');
 }
 
 function delete_user($userID) {
@@ -65,13 +106,13 @@ function delete_user($userID) {
 	destroy_session();
 	session_start();
 	alert('User deleted!');
-	redirect('../current.php');
+	redirect('../index.php');
 }
 
 function update_password() {
 	if($_REQUEST['password'] == $_REQUEST['confirm']) {
 		$token = salted($_REQUEST['password']);
-	} else { alert('Passwords do not match, please try again.'); redirect('../current.php'); }
+	} else { alert('Passwords do not match, please try again.'); redirect('../index.php'); }
 	$conn = db_connect(); //connect to db
 
     $stmt = $conn->prepare("UPDATE `user` SET `password` = ? WHERE userID = ?");
@@ -81,7 +122,7 @@ function update_password() {
     $conn->close();
     destroy_session(); session_start();
     alert('Successfully updated password. Please log in again.');
-    redirect('../current.php');
+    redirect('../index.php');
 }
 
 function destroy_session() {

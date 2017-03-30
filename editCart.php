@@ -11,7 +11,7 @@
     <?php include_once('includes/nav.html');?>
     
     <?php
-      if(isset($_SESSION['cartID'])) { $cartID = $_SESSION['cartID']; } else { redirect('../config/create_cart.php'); }
+      if(isset($_SESSION['cartID'])) { $cartID = $_SESSION['cartID']; } else { redirect('../config/cart_functions.php?action=create&r=editCart'); }
       $query1 = "SELECT * FROM cart c INNER JOIN item i ON i.itemID = c.itemID INNER JOIN restaurant r ON r.restaurantID = i.restaurantID WHERE c.cartID = $cartID";
       $items = db_select($query1);
       $totalAmt = 0;
@@ -69,7 +69,7 @@
       <hr>
       
       <div class="text-center">
-        <a href="current.php" class="mx-2 btn btn-outline-info">Add more items</a>
+        <a href="index.php" class="mx-2 btn btn-outline-info">Add more items</a>
         <a href="editCart.php" class="mx-2 btn btn-outline-warning" disabled>Edit Cart</a>
         <a href="#" class="mx-2 btn btn-outline-success" data-toggle="modal" data-target="#checkout">Checkout</a>
       </div>
@@ -95,7 +95,23 @@
     <?php include_once('includes/scripts.html'); ?>
 
     <!-- Page-specific javascript -->
-    <script src="js/cart.js"></script>
+    <script>
+      $(".remove-btn").hide();
+      $(".lineitem").hover(function() {
+        $(".remove-btn").hide();
+        $("#cart-table").toggleClass("table-hover");
+        $(this).find(".remove-btn").show();
+      });
+      $(".remove-btn").hover(function() {
+        $(this).parents("tr").toggleClass("table-danger");
+      });
+      // Datepicker
+      $( "#datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: 0
+      });
+    </script>
     <?php 
       if(isset($_SESSION['alert'])) {
         $alert = $_SESSION['alert'];
